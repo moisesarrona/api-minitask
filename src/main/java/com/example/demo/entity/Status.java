@@ -24,7 +24,7 @@ public class Status {
 
     @Size(min = 1, max = 50, message = "The length of the description is 1 - 50")
     @NotEmpty(message = "The description must not be empty")
-    @Column(length = 150, unique = true)
+    @Column(length = 150)
     private String description;
 
     @CreationTimestamp

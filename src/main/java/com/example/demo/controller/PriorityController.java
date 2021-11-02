@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Priority;
 import com.example.demo.service.PriorityService;
-import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping(value = "/api/priorities")

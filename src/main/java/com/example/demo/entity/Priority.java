@@ -18,9 +18,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "priorities")
-@Data
 public class Priority {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
