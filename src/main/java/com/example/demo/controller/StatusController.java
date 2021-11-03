@@ -55,7 +55,7 @@ public class StatusController {
         if (statusDelete == null) {
             return ResponseEntity.notFound().build();
         }
-        statusService.deteleStatus(id);
+        statusService.deleteStatus(id);
         return ResponseEntity.ok().build();
     }
 }

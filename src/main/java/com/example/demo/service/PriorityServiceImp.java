@@ -40,7 +40,7 @@ public class PriorityServiceImp implements PriorityService {
 	}
 
 	@Override
-	public void detelePriority(Long id) {
+	public void deletePriority(Long id) {
 		priorityRepository.deleteById(id);;
 		
 	}

@@ -64,7 +64,7 @@ public class PriorityController {
 		if (priorityDeleted == null) {
 			return ResponseEntity.notFound().build();
 		}
-		priorityService.detelePriority(id);
+		priorityService.deletePriority(id);
 		return ResponseEntity.ok().build();
 	}
 }

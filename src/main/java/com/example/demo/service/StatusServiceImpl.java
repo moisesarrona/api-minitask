@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.Priority;
 import com.example.demo.entity.Status;
 import com.example.demo.repository.StatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +39,7 @@ public class StatusServiceImpl implements StatusService {
     }
 
     @Override
-    public void deteleStatus(Long id) {
+    public void deleteStatus(Long id) {
         statusRepository.deleteById(id);
     }
 }
