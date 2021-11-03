@@ -27,7 +27,7 @@ public class Priority {
 	private Long id;
 	
 	@NotEmpty(message = "Name cannot be empty")
-	@Size(min = 0, max = 50, message = "Name length is 1 - 50")
+	@Size(min = 1, max = 50, message = "Name length is 1 - 50")
 	@Column(length = 50, unique = true, nullable = false)
 	private String name;
 	
