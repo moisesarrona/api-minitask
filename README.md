@@ -53,3 +53,9 @@ Route main: localhost:8080/api/
   - post /task
   - put /task/{id}
   - delete /task/{id}
+
+## Follow me 👨‍💻
+Coded and written by Moises
+Follow me for more projects and photos let's gooooo
+* [github/moisesarrona](https://github.com/MoisesArrona/)
+* [instagram/moisesarrona](https://www.instagram.com/moisesarrona/) 
