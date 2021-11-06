@@ -1,5 +1,9 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -34,10 +38,6 @@ public class Task {
     @Column(length = 150, unique = true)
     private String description;
 
-    @NotNull(message = "The status cannot be empty")
-    @Column(nullable = false)
-    private Boolean status;
-
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date created_at;
@@ -45,4 +45,13 @@ public class Task {
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date updated;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "status_id", referencedColumnName = "id", nullable = false)
+    private Status status;
+
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "priority_id", referencedColumnName = "id", nullable = false)
+    private Priority priority;
 }
