@@ -24,25 +24,25 @@ public class User {
     private Long id;
 
     @NotEmpty(message = "Enter your name")
-    @Size(min = 5, max = 50)
+    @Size(min = 3, max = 50, message = "Minimum 3 wor Maximum 50")
     @Column(length = 50, nullable = false)
     private String name;
 
     @NotEmpty(message = "Enter your lastname")
-    @Size(min = 5, max = 50)
+    @Size(min = 3, max = 50, message = "Minimum 3 wor Maximum 50")
     @Column(length = 50, nullable = false)
     private String lastname;
 
     @NotEmpty(message = "Enter your email")
-    @Size(min = 10, max = 150)
+    @Size(min = 10, max = 150, message = "Minimum 10 wor Maximum 150")
     @Column(length = 150, nullable = false)
     private String email;
 
-    @Size(min = 10, max = 150)
+    @Size(min = 10, max = 150, message = "Minimum 10 wor Maximum 150")
     @Column(length = 150)
     private String phone;
 
-    @Size(min = 10, max = 255)
+    @Size(max = 255, message = "Maximum 255")
     @Column(length = 255)
     private String description;
 
