@@ -24,11 +24,11 @@ public class Status {
     private Long id;
 
     @NotEmpty(message = "Enter status")
-    @Size(min = 5, max = 50, message = "Minimum 5 wor Maximum 50")
+    @Size(min = 3, max = 50, message = "Minimum 3 wor Maximum 50")
     @Column(length = 50, nullable = false)
     private String name;
 
-    @Size(min = 5, max = 255, message = "Maximum 255")
+    @Size(max = 255, message = "Maximum 255")
     @Column(length = 150)
     private String description;
 

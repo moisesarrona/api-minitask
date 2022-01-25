@@ -4,6 +4,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -30,9 +33,11 @@ public class Priority {
     @Column(length = 255)
     private String description;
 
+    @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date created_at;
 
+    @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date updated_at;
 }
