@@ -16,7 +16,7 @@ public class TagController {
     @Autowired
     private TagService tagService;
 
-    @GetMapping
+    @GetMapping(value = "/getAllTag")
     public ResponseEntity<List<Tag>> getAllTag() {
         List<Tag> statuses = tagService.getAllTag();
         if (statuses == null) {
@@ -25,7 +25,7 @@ public class TagController {
         return ResponseEntity.ok(statuses);
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/findStatus/{id}")
     public ResponseEntity<Tag> findStatus(@PathVariable(value = "id") Long id) {
         Tag tag = tagService.findTag(id);
         if (tag == null) {
@@ -34,13 +34,13 @@ public class TagController {
         return ResponseEntity.ok(tag);
     }
 
-    @PostMapping
+    @PostMapping(value = "/createdTag")
     public ResponseEntity<Tag> createdTag(@Valid @RequestBody Tag tag) {
         Tag tagCreated = tagService.createdTag(tag);
         return ResponseEntity.status(HttpStatus.CREATED).body(tagCreated);
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping(value = "/updatedTag/{id}")
     public ResponseEntity<Tag> updatedTag(@Valid @RequestBody Tag tag, @PathVariable(value = "id") Long id) {
         Tag tagUpdated = tagService.updatedTag(tag);
         if (tagUpdated == null) {
@@ -49,7 +49,7 @@ public class TagController {
         return ResponseEntity.ok(tagUpdated);
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/deletedTag/{id}")
     public ResponseEntity<Tag> deletedTag(@PathVariable(value = "id") Long id){
         Tag tagDeleted = tagService.findTag(id);
         if (tagDeleted == null) {
@@ -57,5 +57,17 @@ public class TagController {
         }
         tagService.deletedTag(id);
         return ResponseEntity.ok().build();
+    }
+
+    /*
+     * @desc Custom methods for queries
+     */
+    @GetMapping(value = "/findTagByName/{tagName}")
+    public ResponseEntity<List<Tag>> findTagByName(@PathVariable(value = "tagName") String tagName) {
+        List<Tag> tag = tagService.findTagByName(tagName);
+        if (tag == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(tag);
     }
 }

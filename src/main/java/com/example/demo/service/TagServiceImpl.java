@@ -24,7 +24,7 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public Tag createdTag(Tag tag) {
-        Tag tagDB = tagRepository.findByName(tag.getName());
+        Tag tagDB = tagRepository.searchTagByName(tag.getName());
         if (tagDB == null) {
             return tagRepository.save(tag);
         }
@@ -45,5 +45,13 @@ public class TagServiceImpl implements TagService {
     @Override
     public void deletedTag(Long id) {
         tagRepository.deleteById(id);
+    }
+
+    /*
+     * @desc Custom methods for queries
+     */
+    @Override
+    public List<Tag> findTagByName(String tagName) {
+        return tagRepository.findTagByName(tagName);
     }
 }
