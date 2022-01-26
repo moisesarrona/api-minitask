@@ -11,12 +11,12 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/status/")
+@RequestMapping(value = "/api/status")
 public class StatusController {
     @Autowired
     private StatusService statusService;
 
-    @GetMapping
+    @GetMapping(value = "/getAllStatus")
     public ResponseEntity<List<Status>> getAllStatus() {
         List<Status> statuses = statusService.getAllStatus();
         if (statuses == null) {
@@ -25,7 +25,7 @@ public class StatusController {
         return ResponseEntity.ok(statuses);
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/findStatus/{id}")
     public ResponseEntity<Status> findStatus(@PathVariable(value = "id") Long id) {
         Status status = statusService.findStatus(id);
         if (status == null) {
@@ -34,13 +34,13 @@ public class StatusController {
         return ResponseEntity.ok(status);
     }
 
-    @PostMapping
+    @PostMapping(value = "/createdStatus")
     public ResponseEntity<Status> createdStatus(@Valid @RequestBody Status status) {
         Status statusCreated = statusService.createdStatus(status);
         return ResponseEntity.status(HttpStatus.CREATED).body(statusCreated);
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping(value = "/updatedStatus/{id}")
     public ResponseEntity<Status> updatedStatus(@Valid @RequestBody Status status, @PathVariable(value = "id") Long id) {
         Status statusUpdated = statusService.updatedStatus(status);
         if (statusUpdated == null) {
@@ -49,7 +49,7 @@ public class StatusController {
         return ResponseEntity.ok(statusUpdated);
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/deletedStatus/{id}")
     public ResponseEntity<Status> deletedStatus(@PathVariable(value = "id") Long id){
         Status statusDeleted = statusService.findStatus(id);
         if (statusDeleted == null) {
@@ -57,5 +57,17 @@ public class StatusController {
         }
         statusService.deletedStatus(id);
         return ResponseEntity.ok().build();
+    }
+
+    /*
+     * @desc Custom methods for queries
+     */
+    @GetMapping(value = "/findStatusByName/{statusName}")
+    public ResponseEntity<List<Status>> findStatusByName(@PathVariable(value = "statusName") String statusName) {
+        List<Status> status = statusService.findStatusByName(statusName);
+        if (status == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(status);
     }
 }

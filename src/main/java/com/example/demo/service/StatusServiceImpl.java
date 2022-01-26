@@ -24,7 +24,7 @@ public class StatusServiceImpl implements StatusService {
 
     @Override
     public Status createdStatus(Status status) {
-        Status statusDB = statusRepository.findByName(status.getName());
+        Status statusDB = statusRepository.SearchByName(status.getName());
         if (statusDB == null) {
             return statusRepository.save(status);
         }
@@ -45,5 +45,13 @@ public class StatusServiceImpl implements StatusService {
     @Override
     public void deletedStatus(Long id) {
         statusRepository.deleteById(id);
+    }
+
+    /*
+     * @desc Custom methods for queries
+     */
+    @Override
+    public List<Status> findStatusByName(String statusName) {
+        return statusRepository.findStatusByName(statusName);
     }
 }

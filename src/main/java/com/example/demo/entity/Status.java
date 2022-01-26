@@ -25,7 +25,7 @@ public class Status {
 
     @NotEmpty(message = "Enter status")
     @Size(min = 3, max = 50, message = "Minimum 3 wor Maximum 50")
-    @Column(length = 50, nullable = false)
+    @Column(length = 50, nullable = false, unique = true)
     private String name;
 
     @Size(max = 255, message = "Maximum 255")
