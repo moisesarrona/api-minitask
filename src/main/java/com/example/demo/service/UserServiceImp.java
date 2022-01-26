@@ -29,20 +29,38 @@ public class UserServiceImp implements UserService {
 
     @Override
     public User updatedUser(User user) {
-        User userdb = findUser(user.getId());
-        if (userdb == null) {
+        User userDB = findUser(user.getId());
+        if (userDB == null) {
             return null;
         }
-        userdb.setName(user.getName());
-        userdb.setLastname(user.getLastname());
-        userdb.setEmail(user.getEmail());
-        userdb.setPhone(user.getPhone());
-        userdb.setDescription(user.getDescription());
-        return userRepository.save(userdb);
+        userDB.setName(user.getName());
+        userDB.setLastname(user.getLastname());
+        userDB.setEmail(user.getEmail());
+        userDB.setPhone(user.getPhone());
+        userDB.setDescription(user.getDescription());
+        return userRepository.save(userDB);
     }
 
     @Override
     public void deletedUser(Long id) {
         userRepository.deleteById(id);
     }
+
+    /*
+     * @desc Custom methods for queries
+     */
+    @Override
+    public List<User> findUserByName(String userFullName) {
+        List<User> users = userRepository.findUserByName(userFullName);
+        if (users.isEmpty()) {
+            return null;
+        }
+        return users;
+    }
+
+    @Override
+    public User findUserByEmail(String userEmail) {
+        return userRepository.findUserByEmail(userEmail);
+    }
+
 }

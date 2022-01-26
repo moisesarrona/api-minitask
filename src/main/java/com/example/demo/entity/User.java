@@ -33,9 +33,14 @@ public class User {
     @Column(length = 50, nullable = false)
     private String lastname;
 
+    @NotEmpty(message = "Enter your username")
+    @Size(min = 3, max = 50, message = "Minimum 3 wor Maximum 50")
+    @Column(length = 50, nullable = false, unique = true)
+    private String username;
+
     @NotEmpty(message = "Enter your email")
-    @Size(min = 10, max = 150, message = "Minimum 10 wor Maximum 150")
-    @Column(length = 150, nullable = false)
+    @Size(min = 8, max = 150, message = "Minimum 10 wor Maximum 150")
+    @Column(length = 150, nullable = false, unique = true)
     private String email;
 
     @Size(min = 10, max = 150, message = "Minimum 10 wor Maximum 150")
