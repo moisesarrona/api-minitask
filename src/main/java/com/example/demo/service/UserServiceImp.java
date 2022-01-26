@@ -24,7 +24,11 @@ public class UserServiceImp implements UserService {
 
     @Override
     public User createdUser(User user) {
-        return userRepository.save(user);
+        User userDB = userRepository.searchUserByUserName(user.getUsername());
+        if (userDB == null) {
+            return userRepository.save(user);
+        }
+        return userDB;
     }
 
     @Override

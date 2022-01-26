@@ -16,11 +16,17 @@ public interface UserRepository extends JpaRepository<User, Long> {
     static final String queryFindUserByEmail =
             "SELECT *FROM users WHERE email LIKE %:userEmail%";
 
+    static final String querySearchUserByUserName =
+            "SELECT *FROM users WHERE username = :userName";
+
 
     @Query(value = queryFindUserByName, nativeQuery = true)
     public List<User> findUserByName(@Param("userName") String userName);
 
     @Query(value = queryFindUserByEmail, nativeQuery = true)
     public User findUserByEmail(@Param("userEmail") String userEmail);
+
+    @Query(value = querySearchUserByUserName, nativeQuery = true)
+    public User searchUserByUserName(@Param("userName") String userName);
 
 }
