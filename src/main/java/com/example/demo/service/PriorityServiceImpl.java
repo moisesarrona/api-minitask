@@ -24,7 +24,7 @@ public class PriorityServiceImpl implements PriorityService {
 
     @Override
     public Priority createdPriority(Priority priority) {
-        Priority priorityDB = priorityRepository.findByName(priority.getName());
+        Priority priorityDB = priorityRepository.searchPriorityByName(priority.getName());
         if (priorityDB == null) {
             return priorityRepository.save(priority);
         }
@@ -37,8 +37,8 @@ public class PriorityServiceImpl implements PriorityService {
         if (priorityDB == null) {
             return null;
         }
-        priority.setName(priority.getName());
-        priority.setDescription(priority.getDescription());
+        priorityDB.setName(priority.getName());
+        priorityDB.setDescription(priority.getDescription());
         return priorityRepository.save(priorityDB);
     }
 
@@ -46,4 +46,13 @@ public class PriorityServiceImpl implements PriorityService {
     public void deletedPriority(Long id) {
         priorityRepository.deleteById(id);
     }
+
+    /*
+     * @desc Custom methods for queries
+     */
+    @Override
+    public List<Priority> findPriorityByName(String priorityName) {
+        return priorityRepository.findPriorityByName(priorityName);
+    }
+
 }

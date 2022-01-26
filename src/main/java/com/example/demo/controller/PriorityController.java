@@ -16,7 +16,7 @@ public class PriorityController {
     @Autowired
     private PriorityService priorityService;
 
-    @GetMapping
+    @GetMapping(value = "/getAllPriority")
     public ResponseEntity<List<Priority>> getAllPriority() {
         List<Priority> priorities = priorityService.getAllPriority();
         if (priorities == null) {
@@ -25,7 +25,7 @@ public class PriorityController {
         return ResponseEntity.ok(priorities);
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/findPriority/{id}")
     public ResponseEntity<Priority> findPriority(@PathVariable(value = "id") Long id) {
         Priority priority = priorityService.findPriority(id);
         if (priority == null) {
@@ -34,13 +34,13 @@ public class PriorityController {
         return ResponseEntity.ok(priority);
     }
 
-    @PostMapping
+    @PostMapping(value = "/createdPriority")
     public ResponseEntity<Priority> createdPriority(@Valid @RequestBody Priority priority) {
         Priority priorityCreated = priorityService.createdPriority(priority);
         return ResponseEntity.status(HttpStatus.CREATED).body(priorityCreated);
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping(value = "/updatedPriority/{id}")
     public ResponseEntity<Priority> updatedPriority(@Valid @RequestBody Priority priority, @PathVariable(value = "id") Long id) {
         Priority priorityUpdated = priorityService.updatedPriority(priority);
         if (priorityUpdated == null) {
@@ -49,7 +49,7 @@ public class PriorityController {
         return ResponseEntity.ok(priorityUpdated);
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/deletedPriority/{id}")
     public ResponseEntity<Priority> deletedPriority(@PathVariable(value = "id") Long id) {
         Priority priority = priorityService.findPriority(id);
         if (priority == null) {
@@ -57,5 +57,17 @@ public class PriorityController {
         }
         priorityService.deletedPriority(id);
         return ResponseEntity.ok().build();
+    }
+
+    /*
+     * @desc Custom methods for queries
+     */
+    @GetMapping(value = "/findPriorityByName/{priorityName}")
+    public ResponseEntity<List<Priority>> findPriorityByName(@PathVariable(value = "priorityName") String priorityName) {
+        List<Priority> priorities = priorityService.findPriorityByName(priorityName);
+        if (priorities == null) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(priorities);
     }
 }
