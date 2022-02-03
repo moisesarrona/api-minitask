@@ -1,12 +1,18 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
@@ -24,30 +30,37 @@ public class Task {
 
     @NotEmpty(message = "Enter name")
     @Size(min = 3, max= 50, message = "Minimum 3 wor Maximum 50")
+    @Column(length = 50, nullable = false)
     private String name;
 
     @Size(max = 255, message = "Maximum 255")
     @Column(length = 255)
     private String description;
 
+    @NotNull(message = "Mode is required")
+    @Column(nullable = false)
+    private Boolean mode;
+
+    @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date created_at;
 
+    @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date updated_at;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "status_id", nullable = false, insertable = false, updatable = false)
+    @ManyToOne(cascade = {})
+    @JoinColumn(name = "status_id")
     @ToString.Exclude
     private Status status;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "priority_id", nullable = false, insertable = false, updatable = false)
+    @ManyToOne(cascade = {})
+    @JoinColumn(name = "priority_id")
     @ToString.Exclude
     private Priority priority;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", nullable = false, insertable = false, updatable = false)
+    @ManyToOne(cascade = {})
+    @JoinColumn(name = "user_id")
     @ToString.Exclude
     private User user;
 
@@ -57,7 +70,8 @@ public class Task {
             inverseJoinColumns = @JoinColumn(name = "tag_id", nullable = false)
     )
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {})
+    @JsonManagedReference
     @ToString.Exclude
     private List<Tag> tags;
 }

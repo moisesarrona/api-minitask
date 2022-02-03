@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -42,6 +44,7 @@ public class Tag {
     private Date updated_at;
 
     @ManyToMany(mappedBy = "tags")
+    @JsonBackReference
     @ToString.Exclude
     private List<Task> tasks;
 }
