@@ -62,36 +62,36 @@ public class TaskController {
     /*
      * @desc Custom methods for queries
      */
-    @GetMapping(value = "/findAllTaskByMode/{user}")
-    public ResponseEntity<List<Task>> findAllTaskByMode(@PathVariable(value = "user") Long user) {
-        List<Task> task = taskService.findAllTaskByMode(user);
+    @GetMapping(value = "/findAllTaskActiveByUserId/{user_id}")
+    public ResponseEntity<List<Task>> findAllTaskActiveByUserId(@PathVariable(value = "user_id") Long user_id) {
+        List<Task> task = taskService.findAllTaskActiveByUserId(user_id);
         if (task == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(task);
     }
 
-    @GetMapping(value = "/findTaskByStatus/{status}")
-    public ResponseEntity<List<Task>> findTaskByStatus(@PathVariable(value = "status") Long status) {
-        List<Task> task = taskService.findTaskByStatus(status);
+    @GetMapping(value = "/findTaskByStatusId/{status_id}")
+    public ResponseEntity<List<Task>> findTaskByStatusId(@PathVariable(value = "status_id") Long status_id) {
+        List<Task> task = taskService.findTaskByStatusId(status_id);
         if (task == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(task);
     }
 
-    @GetMapping(value = "/findTaskByPriority/{priority}")
-    public ResponseEntity<List<Task>> findTaskByPriority(@PathVariable(value = "priority") Long priority) {
-        List<Task> task = taskService.findTaskByPriority(priority);
+    @GetMapping(value = "/findTaskByPriorityId/{priority_id}")
+    public ResponseEntity<List<Task>> findTaskByPriorityId(@PathVariable(value = "priority_id") Long priority_id) {
+        List<Task> task = taskService.findTaskByPriorityId(priority_id);
         if (task == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(task);
     }
 
-    @GetMapping(value = "/findTaskByName/{name}")
-    public ResponseEntity<List<Task>> findTaskByName(@PathVariable(value = "name") String name) {
-        List<Task> task = taskService.findTaskByName(name);
+    @GetMapping(value = "/findAllTaskByName/{taskName}")
+    public ResponseEntity<List<Task>> findAllTaskByName(@PathVariable(value = "taskName") String taskName) {
+        List<Task> task = taskService.findAllTaskByName(taskName);
         if (task == null) {
             return ResponseEntity.notFound().build();
         }

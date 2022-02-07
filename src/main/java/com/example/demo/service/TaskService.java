@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Task;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -19,12 +18,12 @@ public interface TaskService {
     /*
      * @desc Custom methods for queries
      */
-    public List<Task> findAllTaskByMode(Long user);
+    public List<Task> findAllTaskActiveByUserId(Long user_id);
 
-    public List<Task> findTaskByStatus(Long status);
+    public List<Task> findTaskByStatusId(Long status_id);
 
-    public List<Task> findTaskByPriority(Long priority);
+    public List<Task> findTaskByPriorityId(Long priority_id);
 
-    public List<Task> findTaskByName(@Param("name") String name);
+    public List<Task> findAllTaskByName(String taskName);
 
 }

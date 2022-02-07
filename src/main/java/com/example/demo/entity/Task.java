@@ -51,17 +51,17 @@ public class Task {
 
     @ManyToOne(cascade = {})
     @JoinColumn(name = "status_id")
-    @ToString.Exclude
+    //@ToString.Exclude
     private Status status;
 
     @ManyToOne(cascade = {})
     @JoinColumn(name = "priority_id")
-    @ToString.Exclude
+    //@ToString.Exclude
     private Priority priority;
 
     @ManyToOne(cascade = {})
     @JoinColumn(name = "user_id")
-    @ToString.Exclude
+    //@ToString.Exclude
     private User user;
 
     @JoinTable(
@@ -71,7 +71,7 @@ public class Task {
     )
 
     @ManyToMany(cascade = {})
-    @JsonManagedReference
+    //@JsonManagedReference
     @ToString.Exclude
     private List<Tag> tags;
 }

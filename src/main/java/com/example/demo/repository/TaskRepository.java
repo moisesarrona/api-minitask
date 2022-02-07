@@ -10,28 +10,28 @@ import java.util.List;
 
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
-    static final String queryFindAllTaskByMode =
-            "SELECT *FROM tasks WHERE user_id = :user AND mode = true";
+    static final String queryFindAllTaskByUserId =
+            "SELECT *FROM tasks WHERE user_id = :user_id AND mode = 1";
 
-    static final String queryFindTaskByStatus =
-            "SELECT *FROM tasks WHERE status_id = :status AND mode = true";
+    static final String queryFindTaskByStatusId =
+            "SELECT *FROM tasks WHERE status_id = :status_id";
 
-    static final String queryFindTaskByPriority =
-            "SELECT *FROM tasks WHERE priority_id = :priority AND mode = true";
+    static final String queryFindTaskByPriorityId =
+            "SELECT *FROM tasks WHERE priority_id = :priority_id";
 
-    static final String queryFindTaskByName =
-            "SELECT *FROM tasks WHERE name LIKE %:name% AND mode = true";
+    static final String queryFindAllTaskByName =
+            "SELECT *FROM tasks WHERE name LIKE %:taskName%";
 
 
-    @Query(name = queryFindAllTaskByMode, nativeQuery = true)
-    public List<Task> findAllTaskByMode(@Param("user") Long user);
+    @Query(name = queryFindAllTaskByUserId, nativeQuery = true)
+    public List<Task> findAllTaskActiveByUserId(@Param("user_id") Long user_id);
 
-    @Query(name = queryFindTaskByStatus, nativeQuery = true)
-    public List<Task> findTaskByStatus(@Param("status") Long status);
+    @Query(name = queryFindTaskByStatusId, nativeQuery = true)
+    public List<Task> findTaskByStatusId(@Param("status_id") Long status_id);
 
-    @Query(name = queryFindTaskByPriority, nativeQuery = true)
-    public List<Task> findTaskByPriority(@Param("priority") Long priority);
+    @Query(name = queryFindTaskByPriorityId, nativeQuery = true)
+    public List<Task> findTaskByPriorityId(@Param("priority_id") Long priority_id);
 
-    @Query(name = queryFindTaskByName, nativeQuery = true)
-    public List<Task> findTaskByName(@Param("name") String name);
+    @Query(name = queryFindAllTaskByName, nativeQuery = true)
+    public List<Task> findAllTaskByName(@Param("taskName") String taskName);
 }

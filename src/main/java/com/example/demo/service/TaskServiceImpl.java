@@ -54,22 +54,22 @@ public class TaskServiceImpl implements TaskService {
      * @desc Custom methods for queries
      */
     @Override
-    public List<Task> findAllTaskByMode(Long user) {
-        return taskRepository.findAllTaskByMode(user);
+    public List<Task> findAllTaskActiveByUserId(Long user_id) {
+        return taskRepository.findAllTaskActiveByUserId(user_id);
     }
 
     @Override
-    public List<Task> findTaskByStatus(Long status) {
-        return taskRepository.findTaskByStatus(status);
+    public List<Task> findTaskByStatusId(Long status_id) {
+        return taskRepository.findTaskByStatusId(status_id);
     }
 
     @Override
-    public List<Task> findTaskByPriority(Long priority) {
-        return taskRepository.findTaskByPriority(priority);
+    public List<Task> findTaskByPriorityId(Long priority_id) {
+        return taskRepository.findTaskByPriorityId(priority_id);
     }
 
     @Override
-    public List<Task> findTaskByName(String name) {
-        return taskRepository.findTaskByName(name);
+    public List<Task> findAllTaskByName(String taskName) {
+        return taskRepository.findAllTaskByName(taskName);
     }
 }
