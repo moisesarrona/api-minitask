@@ -4,6 +4,6 @@
 | (_| | |_) | | |_____| | | | | | | | | | | | || (_| \__ \   <
  \__,_| .__/|_|         |_| |_| |_|_|_| |_|_|\__\__,_|___/_|\_\
       |_|
-v0.0.1
+v0.0.2
 developer: @moisesarrona
 description: In this version you can add users, priorities, status, tags and tasks.
