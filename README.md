@@ -1,7 +1,7 @@
 # api-task 📓
 This is an API created to organize your tasks, you prioritize task, change status add tags. Api status is primitive, I keep writing code.  
   
-Version 0.0.1  
+Version 0.0.2  
 Description: In this version you can add users, priorities, status, tags and tasks
 
 ## Technologies 💻

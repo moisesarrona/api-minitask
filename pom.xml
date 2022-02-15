@@ -8,11 +8,11 @@
 		<version>2.5.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
+	<groupId>com.moisesarrona</groupId>
 	<artifactId>api-minitask</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>api-minitask</name>
-	<description>Demo project for Spring Boot</description>
+	<description>This is an API created to organize your tasks, you prioritize task, change status add tags</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
