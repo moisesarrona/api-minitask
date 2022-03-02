@@ -28,6 +28,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         error.setMessage(exception.getMessage());
         error.setStatus(httpStatus);
         error.setTimestamp(new Date());
+        error.setErrors(errors);
         return new ResponseEntity<>(error, httpStatus);
     }
 
