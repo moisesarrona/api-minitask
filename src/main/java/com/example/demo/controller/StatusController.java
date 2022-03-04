@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Status;
+import com.example.demo.errorhandler.InvalidDataException;
 import com.example.demo.service.StatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -35,7 +37,9 @@ public class StatusController {
     }
 
     @PostMapping(value = "/createdStatus")
-    public ResponseEntity<Status> createdStatus(@Valid @RequestBody Status status) {
+    public ResponseEntity<Status> createdStatus(@Valid @RequestBody Status status, BindingResult result) {
+        if (result.hasErrors())
+            throw new InvalidDataException(result);
         Status statusCreated = statusService.createdStatus(status);
         return ResponseEntity.status(HttpStatus.CREATED).body(statusCreated);
     }
