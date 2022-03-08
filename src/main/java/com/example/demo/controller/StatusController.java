@@ -40,16 +40,21 @@ public class StatusController {
     public ResponseEntity<Status> createdStatus(@Valid @RequestBody Status status, BindingResult result) {
         if (result.hasErrors())
             throw new InvalidDataException(result);
+
         Status statusCreated = statusService.createdStatus(status);
         return ResponseEntity.status(HttpStatus.CREATED).body(statusCreated);
     }
 
     @PutMapping(value = "/updatedStatus/{id}")
-    public ResponseEntity<Status> updatedStatus(@Valid @RequestBody Status status, @PathVariable(value = "id") Long id) {
+    public ResponseEntity<Status> updatedStatus(@Valid @RequestBody Status status, @PathVariable(value = "id") Long id, BindingResult result) {
+        if (result.hasErrors())
+            System.out.println("Holaaaaa");
+            //throw new InvalidDataException(result);
+
         Status statusUpdated = statusService.updatedStatus(status);
-        if (statusUpdated == null) {
+        if (statusUpdated == null)
             return ResponseEntity.notFound().build();
-        }
+
         return ResponseEntity.ok(statusUpdated);
     }
 

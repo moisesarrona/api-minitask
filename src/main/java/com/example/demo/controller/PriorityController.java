@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Priority;
+import com.example.demo.errorhandler.InvalidDataException;
 import com.example.demo.service.PriorityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -35,17 +37,23 @@ public class PriorityController {
     }
 
     @PostMapping(value = "/createdPriority")
-    public ResponseEntity<Priority> createdPriority(@Valid @RequestBody Priority priority) {
+    public ResponseEntity<Priority> createdPriority(@Valid @RequestBody Priority priority, BindingResult result) {
+        if (result.hasErrors())
+            throw new InvalidDataException(result);
+
         Priority priorityCreated = priorityService.createdPriority(priority);
         return ResponseEntity.status(HttpStatus.CREATED).body(priorityCreated);
     }
 
     @PutMapping(value = "/updatedPriority/{id}")
-    public ResponseEntity<Priority> updatedPriority(@Valid @RequestBody Priority priority, @PathVariable(value = "id") Long id) {
+    public ResponseEntity<Priority> updatedPriority(@Valid @RequestBody Priority priority, @PathVariable(value = "id") Long id, BindingResult result) {
+        if (result.hasErrors())
+            throw new InvalidDataException(result);
+
         Priority priorityUpdated = priorityService.updatedPriority(priority);
-        if (priorityUpdated == null) {
+        if (priorityUpdated == null)
             return ResponseEntity.notFound().build();
-        }
+
         return ResponseEntity.ok(priorityUpdated);
     }
 

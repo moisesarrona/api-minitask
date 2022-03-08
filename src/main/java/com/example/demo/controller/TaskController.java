@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Task;
+import com.example.demo.errorhandler.InvalidDataException;
 import com.example.demo.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -35,17 +37,23 @@ public class TaskController {
     }
 
     @PostMapping(value = "/createdTask")
-    public ResponseEntity<Task> createdTask(@Valid @RequestBody Task task) {
+    public ResponseEntity<Task> createdTask(@Valid @RequestBody Task task, BindingResult result) {
+        if (result.hasErrors())
+            throw new InvalidDataException(result);
+
         Task taskCreated = taskService.createdTask(task);
         return ResponseEntity.status(HttpStatus.CREATED).body(taskCreated);
     }
 
     @PutMapping(value = "/updatedTask/{id}")
-    public ResponseEntity<Task> updatedTask(@Valid @RequestBody Task task, @PathVariable(value = "id") Long id) {
+    public ResponseEntity<Task> updatedTask(@Valid @RequestBody Task task, @PathVariable(value = "id") Long id, BindingResult result) {
+        if (result.hasErrors())
+            throw new InvalidDataException(result);
+
         Task taskUpdated = taskService.updatedTask(task);
-        if (taskUpdated == null) {
+        if (taskUpdated == null)
             return ResponseEntity.notFound().build();
-        }
+
         return ResponseEntity.ok(taskUpdated);
     }
 
