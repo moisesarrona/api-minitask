@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.User;
+import com.example.demo.errorhandler.InvalidDataException;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -35,13 +37,19 @@ public class UserController {
     }
 
     @PostMapping(value = "/createdUser")
-    public ResponseEntity<User> createdUser(@Valid @RequestBody User user) {
+    public ResponseEntity<User> createdUser(@Valid @RequestBody User user, BindingResult result) {
+        if (result.hasErrors())
+            throw new InvalidDataException(result);
+
         User userCreated = userService.createdUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(userCreated);
     }
 
     @PutMapping(value = "/updatedUser/{id}")
-    public ResponseEntity<User> updatedUser(@Valid @RequestBody User user, @PathVariable(value = "id") Long id) {
+    public ResponseEntity<User> updatedUser(@Valid @RequestBody User user, @PathVariable(value = "id") Long id, BindingResult result) {
+        if (result.hasErrors())
+            throw new InvalidDataException(result);
+
         User userUpdated = userService.updatedUser(user);
         if (userUpdated == null) {
             return ResponseEntity.notFound().build();

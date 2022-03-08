@@ -50,9 +50,8 @@ public class TagController {
             throw new InvalidDataException(result);
 
         Tag tagUpdated = tagService.updatedTag(tag);
-        if (tagUpdated == null) {
+        if (tagUpdated == null)
             return ResponseEntity.notFound().build();
-        }
 
         return ResponseEntity.ok(tagUpdated);
     }

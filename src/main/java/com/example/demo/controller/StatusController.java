@@ -48,8 +48,7 @@ public class StatusController {
     @PutMapping(value = "/updatedStatus/{id}")
     public ResponseEntity<Status> updatedStatus(@Valid @RequestBody Status status, @PathVariable(value = "id") Long id, BindingResult result) {
         if (result.hasErrors())
-            System.out.println("Holaaaaa");
-            //throw new InvalidDataException(result);
+            throw new InvalidDataException(result);
 
         Status statusUpdated = statusService.updatedStatus(status);
         if (statusUpdated == null)
