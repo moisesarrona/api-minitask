@@ -49,8 +49,8 @@ public class TaskServiceImpl implements TaskService {
      * @desc Custom methods for queries
      */
     @Override
-    public List<Task> findAllTaskActiveByUserId(Long user_id) {
-        return taskRepository.findAllTaskActiveByUserId(user_id);
+    public List<Task> findAllTaskActiveByUserId(Long userId) {
+        return taskRepository.findAllTaskActiveByUserId(userId);
     }
 
     @Override
@@ -59,8 +59,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> findTaskByPriorityId(Long priority_id) {
-        return taskRepository.findTaskByPriorityId(priority_id);
+    public List<Task> findTaskByPriorityId(Long priorityId) {
+        return taskRepository.findTaskByPriorityId(priorityId);
     }
 
     @Override

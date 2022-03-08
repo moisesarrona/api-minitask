@@ -73,17 +73,17 @@ public class TaskController {
         return ResponseEntity.ok(task);
     }
 
-    @GetMapping(value = "/findTaskByStatusId/{status_id}")
-    public ResponseEntity<List<Task>> findTaskByStatusId(@PathVariable(value = "status_id") Long status_id) {
-        List<Task> task = taskService.findTaskByStatusId(status_id);
+    @GetMapping(value = "/findTaskByStatusId/{statusId}")
+    public ResponseEntity<List<Task>> findTaskByStatusId(@PathVariable(value = "statusId") Long statusId) {
+        List<Task> task = taskService.findTaskByStatusId(statusId);
         if (task.isEmpty())
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(task);
     }
 
-    @GetMapping(value = "/findTaskByPriorityId/{priority_id}")
-    public ResponseEntity<List<Task>> findTaskByPriorityId(@PathVariable(value = "priority_id") Long priority_id) {
-        List<Task> task = taskService.findTaskByPriorityId(priority_id);
+    @GetMapping(value = "/findTaskByPriorityId/{priorityId}")
+    public ResponseEntity<List<Task>> findTaskByPriorityId(@PathVariable(value = "priorityId") Long priorityId) {
+        List<Task> task = taskService.findTaskByPriorityId(priorityId);
         if (task.isEmpty())
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(task);
