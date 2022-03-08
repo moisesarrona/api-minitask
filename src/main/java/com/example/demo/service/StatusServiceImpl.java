@@ -25,18 +25,16 @@ public class StatusServiceImpl implements StatusService {
     @Override
     public Status createdStatus(Status status) {
         Status statusDB = statusRepository.SearchByName(status.getName());
-        if (statusDB == null) {
+        if (statusDB == null)
             return statusRepository.save(status);
-        }
         return statusDB;
     }
 
     @Override
     public Status updatedStatus(Status status) {
         Status statusDB = findStatus(status.getId());
-        if (statusDB == null) {
+        if (statusDB == null)
             return null;
-        }
         statusDB.setName(status.getName());
         statusDB.setDescription(status.getDescription());
         return statusRepository.save(statusDB);

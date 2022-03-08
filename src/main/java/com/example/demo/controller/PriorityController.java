@@ -21,18 +21,16 @@ public class PriorityController {
     @GetMapping(value = "/getAllPriority")
     public ResponseEntity<List<Priority>> getAllPriority() {
         List<Priority> priorities = priorityService.getAllPriority();
-        if (priorities == null) {
+        if (priorities.isEmpty())
             return ResponseEntity.noContent().build();
-        }
         return ResponseEntity.ok(priorities);
     }
 
     @GetMapping(value = "/findPriority/{id}")
     public ResponseEntity<Priority> findPriority(@PathVariable(value = "id") Long id) {
         Priority priority = priorityService.findPriority(id);
-        if (priority == null) {
+        if (priority == null)
             return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok(priority);
     }
 
@@ -40,7 +38,6 @@ public class PriorityController {
     public ResponseEntity<Priority> createdPriority(@Valid @RequestBody Priority priority, BindingResult result) {
         if (result.hasErrors())
             throw new InvalidDataException(result);
-
         Priority priorityCreated = priorityService.createdPriority(priority);
         return ResponseEntity.status(HttpStatus.CREATED).body(priorityCreated);
     }
@@ -49,20 +46,17 @@ public class PriorityController {
     public ResponseEntity<Priority> updatedPriority(@Valid @RequestBody Priority priority, @PathVariable(value = "id") Long id, BindingResult result) {
         if (result.hasErrors())
             throw new InvalidDataException(result);
-
         Priority priorityUpdated = priorityService.updatedPriority(priority);
         if (priorityUpdated == null)
             return ResponseEntity.notFound().build();
-
         return ResponseEntity.ok(priorityUpdated);
     }
 
     @DeleteMapping(value = "/deletedPriority/{id}")
     public ResponseEntity<Priority> deletedPriority(@PathVariable(value = "id") Long id) {
         Priority priority = priorityService.findPriority(id);
-        if (priority == null) {
+        if (priority == null)
             return ResponseEntity.notFound().build();
-        }
         priorityService.deletedPriority(id);
         return ResponseEntity.ok().build();
     }
@@ -73,9 +67,8 @@ public class PriorityController {
     @GetMapping(value = "/findPriorityByName/{priorityName}")
     public ResponseEntity<List<Priority>> findPriorityByName(@PathVariable(value = "priorityName") String priorityName) {
         List<Priority> priorities = priorityService.findPriorityByName(priorityName);
-        if (priorities == null) {
-            return ResponseEntity.noContent().build();
-        }
+        if (priorities.isEmpty())
+            return ResponseEntity.notFound().build();
         return ResponseEntity.ok(priorities);
     }
 }

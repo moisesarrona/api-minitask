@@ -24,19 +24,14 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task createdTask(Task task) {
-        //Task taskDB = findTask(task.getId());
-        //if (taskDB == null) {
-            return taskRepository.save(task);
-        //}
-        //return taskDB;
+        return taskRepository.save(task);
     }
 
     @Override
     public Task updatedTask(Task task) {
         Task taskDB = findTask(task.getId());
-        if (taskDB == null) {
+        if (taskDB == null)
             return null;
-        }
         taskDB.setName(task.getName());
         taskDB.setDescription(task.getDescription());
         taskDB.setMode(task.getMode());

@@ -21,9 +21,8 @@ public class TagController {
     @GetMapping(value = "/getAllTag")
     public ResponseEntity<List<Tag>> getAllTag() {
         List<Tag> statuses = tagService.getAllTag();
-        if (statuses == null) {
+        if (statuses.isEmpty())
             return ResponseEntity.noContent().build();
-        }
         return ResponseEntity.ok(statuses);
     }
 
@@ -39,7 +38,6 @@ public class TagController {
     public ResponseEntity<Tag> createdTag(@Valid @RequestBody Tag tag, BindingResult result) {
         if (result.hasErrors())
             throw new InvalidDataException(result);
-
         Tag tagCreated = tagService.createdTag(tag);
         return ResponseEntity.status(HttpStatus.CREATED).body(tagCreated);
     }
@@ -48,20 +46,17 @@ public class TagController {
     public ResponseEntity<Tag> updatedTag(@Valid @RequestBody Tag tag, @PathVariable(value = "id") Long id, BindingResult result) {
         if (result.hasErrors())
             throw new InvalidDataException(result);
-
         Tag tagUpdated = tagService.updatedTag(tag);
         if (tagUpdated == null)
             return ResponseEntity.notFound().build();
-
         return ResponseEntity.ok(tagUpdated);
     }
 
     @DeleteMapping(value = "/deletedTag/{id}")
     public ResponseEntity<Tag> deletedTag(@PathVariable(value = "id") Long id){
         Tag tagDeleted = tagService.findTag(id);
-        if (tagDeleted == null) {
+        if (tagDeleted == null)
             return ResponseEntity.notFound().build();
-        }
         tagService.deletedTag(id);
         return ResponseEntity.ok().build();
     }
@@ -72,7 +67,7 @@ public class TagController {
     @GetMapping(value = "/findTagByName/{tagName}")
     public ResponseEntity<List<Tag>> findTagByName(@PathVariable(value = "tagName") String tagName) {
         List<Tag> tag = tagService.findTagByName(tagName);
-        if (tag == null) {
+        if (tag.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(tag);
