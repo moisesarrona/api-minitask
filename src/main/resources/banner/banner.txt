@@ -6,4 +6,4 @@
       |_|
 v0.1.0
 developer: @moisesarrona
-description: In this version you can add users, priorities, status, tags and tasks.
+description: Added errors for "Bad Request" requests.

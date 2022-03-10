@@ -2,7 +2,7 @@
 This is an API created to organize your tasks, you prioritize task, change status add tags. Api status is primitive, I keep writing code.  
   
 Version 0.1.0  
-Description: In this version you can add users, priorities, status, tags and tasks
+Description: Added errors for "Bad Request" requests
 
 ## Technologies 💻
 - Java 11
