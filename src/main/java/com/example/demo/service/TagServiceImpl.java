@@ -25,18 +25,16 @@ public class TagServiceImpl implements TagService {
     @Override
     public Tag createdTag(Tag tag) {
         Tag tagDB = tagRepository.searchTagByName(tag.getName());
-        if (tagDB == null) {
+        if (tagDB == null)
             return tagRepository.save(tag);
-        }
         return tagDB;
     }
 
     @Override
     public Tag updatedTag(Tag tag) {
         Tag tagDB = findTag(tag.getId());
-        if (tagDB == null) {
+        if (tagDB == null)
             return null;
-        }
         tagDB.setName(tag.getName());
         tagDB.setDescription(tag.getDescription());
         return tagRepository.save(tagDB);

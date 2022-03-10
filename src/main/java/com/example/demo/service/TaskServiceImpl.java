@@ -24,19 +24,14 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task createdTask(Task task) {
-        //Task taskDB = findTask(task.getId());
-        //if (taskDB == null) {
-            return taskRepository.save(task);
-        //}
-        //return taskDB;
+        return taskRepository.save(task);
     }
 
     @Override
     public Task updatedTask(Task task) {
         Task taskDB = findTask(task.getId());
-        if (taskDB == null) {
+        if (taskDB == null)
             return null;
-        }
         taskDB.setName(task.getName());
         taskDB.setDescription(task.getDescription());
         taskDB.setMode(task.getMode());
@@ -54,8 +49,8 @@ public class TaskServiceImpl implements TaskService {
      * @desc Custom methods for queries
      */
     @Override
-    public List<Task> findAllTaskActiveByUserId(Long user_id) {
-        return taskRepository.findAllTaskActiveByUserId(user_id);
+    public List<Task> findAllTaskActiveByUserId(Long userId) {
+        return taskRepository.findAllTaskActiveByUserId(userId);
     }
 
     @Override
@@ -64,8 +59,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> findTaskByPriorityId(Long priority_id) {
-        return taskRepository.findTaskByPriorityId(priority_id);
+    public List<Task> findTaskByPriorityId(Long priorityId) {
+        return taskRepository.findTaskByPriorityId(priorityId);
     }
 
     @Override

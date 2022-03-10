@@ -25,18 +25,16 @@ public class PriorityServiceImpl implements PriorityService {
     @Override
     public Priority createdPriority(Priority priority) {
         Priority priorityDB = priorityRepository.searchPriorityByName(priority.getName());
-        if (priorityDB == null) {
+        if (priorityDB == null)
             return priorityRepository.save(priority);
-        }
         return priorityDB;
     }
 
     @Override
     public Priority updatedPriority(Priority priority) {
         Priority priorityDB = findPriority(priority.id);
-        if (priorityDB == null) {
+        if (priorityDB == null)
             return null;
-        }
         priorityDB.setName(priority.getName());
         priorityDB.setDescription(priority.getDescription());
         return priorityRepository.save(priorityDB);

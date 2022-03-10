@@ -55,11 +55,7 @@ public class UserServiceImp implements UserService {
      */
     @Override
     public List<User> findUserByName(String userFullName) {
-        List<User> users = userRepository.findUserByName(userFullName);
-        if (users.isEmpty()) {
-            return null;
-        }
-        return users;
+        return userRepository.findUserByName(userFullName);
     }
 
     @Override
