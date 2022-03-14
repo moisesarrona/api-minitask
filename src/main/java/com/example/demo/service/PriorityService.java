@@ -4,6 +4,10 @@ import com.example.demo.entity.Priority;
 
 import java.util.List;
 
+/**
+ * @author moisesarrona
+ * @version 0.1
+ */
 public interface PriorityService {
     public List<Priority> getAllPriority();
 

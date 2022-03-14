@@ -13,6 +13,10 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
+/**
+ * @author moisesarrona
+ * @version 0.1
+ */
 @Setter
 @Getter
 @NoArgsConstructor

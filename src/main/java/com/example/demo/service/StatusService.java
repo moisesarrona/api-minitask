@@ -4,6 +4,10 @@ import com.example.demo.entity.Status;
 
 import java.util.List;
 
+/**
+ * @author moisesarrona
+ * @version 0.1
+ */
 public interface StatusService {
     public List<Status> getAllStatus();
 

@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * @author moisesarrona
+ * @version 0.1
+ */
 @Repository
 public interface PriorityRepository extends JpaRepository<Priority, Long> {
     static final String queryFindPriorityByName =
