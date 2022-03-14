@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author moisesarrona
+ * @version 0.1
+ */
 @Getter
 @Setter
 @NoArgsConstructor
