@@ -5,6 +5,10 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
+/**
+ * @author moisesarrona
+ * @version 0.1
+ */
 public interface UserService {
     public List<User> getAllUser();
 
