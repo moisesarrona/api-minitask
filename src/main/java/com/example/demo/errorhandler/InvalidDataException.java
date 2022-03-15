@@ -5,6 +5,10 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import org.springframework.validation.BindingResult;
 
+/**
+ * @author moisesarrona
+ * @version 0.1
+ */
 @Getter
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)

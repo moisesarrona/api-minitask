@@ -4,6 +4,10 @@ import com.example.demo.entity.Task;
 
 import java.util.List;
 
+/**
+ * @author moisesarrona
+ * @version 0.1
+ */
 public interface TaskService {
     public List<Task> getAllTask();
 

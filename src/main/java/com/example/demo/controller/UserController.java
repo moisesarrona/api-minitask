@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * @author moisesarrona
+ * @version 0.1
+ */
 @RestController
 @RequestMapping(value = "/api/users")
 public class UserController {

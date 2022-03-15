@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * @author moisesarrona
+ * @version 0.1
+ */
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
     static final String queryFindAllTaskByUserId =
