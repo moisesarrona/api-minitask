@@ -39,7 +39,8 @@ public class PriorityServiceImpl implements PriorityService {
         Priority priorityDB = findPriority(priority.id);
         if (priorityDB == null)
             return null;
-        priorityDB.setName(priority.getName());
+        if (!priority.getName().equals(priorityDB.getName()))
+            priorityDB.setName(priority.getName());
         priorityDB.setDescription(priority.getDescription());
         return priorityRepository.save(priorityDB);
     }
