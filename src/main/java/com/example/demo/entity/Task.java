@@ -39,7 +39,7 @@ public class Task {
     private String description;
 
     @NotNull(message = "Mode is required")
-    @Column(nullable = false, columnDefinition = "boolean")
+    @Column(nullable = false, columnDefinition = "BIT")
     private Boolean mode;
 
     @CreationTimestamp
