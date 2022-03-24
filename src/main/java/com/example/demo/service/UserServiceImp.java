@@ -29,18 +29,16 @@ public class UserServiceImp implements UserService {
     @Override
     public User createdUser(User user) {
         User userDB = userRepository.searchUserByUserName(user.getUsername());
-        if (userDB == null) {
+        if (userDB == null)
             return userRepository.save(user);
-        }
         return userDB;
     }
 
     @Override
     public User updatedUser(User user) {
         User userDB = findUser(user.getId());
-        if (userDB == null) {
+        if (userDB == null)
             return null;
-        }
         userDB.setName(user.getName());
         userDB.setLastname(user.getLastname());
         userDB.setEmail(user.getEmail());

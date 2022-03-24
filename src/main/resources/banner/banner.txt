@@ -4,6 +4,6 @@
 | (_| | |_) | | |_____| | | | | | | | | | | | || (_| \__ \   <
  \__,_| .__/|_|         |_| |_| |_|_|_| |_|_|\__\__,_|___/_|\_\
       |_|
-v0.1.1
+v0.1.2
 Author: @moisesarrona
-Description: Added errors for "Bad Request" requests.
+Description: Fix validation to updated data.

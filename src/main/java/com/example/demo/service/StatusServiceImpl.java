@@ -39,7 +39,8 @@ public class StatusServiceImpl implements StatusService {
         Status statusDB = findStatus(status.getId());
         if (statusDB == null)
             return null;
-        statusDB.setName(status.getName());
+        if (!status.getName().equals(statusDB.getName()))
+            statusDB.setName(status.getName());
         statusDB.setDescription(status.getDescription());
         return statusRepository.save(statusDB);
     }

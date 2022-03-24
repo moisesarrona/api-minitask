@@ -39,7 +39,8 @@ public class TagServiceImpl implements TagService {
         Tag tagDB = findTag(tag.getId());
         if (tagDB == null)
             return null;
-        tagDB.setName(tag.getName());
+        if (!tag.getName().equals(tagDB.getName()))
+            tagDB.setName(tag.getName());
         tagDB.setDescription(tag.getDescription());
         return tagRepository.save(tagDB);
     }
