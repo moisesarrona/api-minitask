@@ -41,7 +41,7 @@ public class TaskServiceImpl implements TaskService {
         taskDB.setMode(task.getMode());
         taskDB.setStatus(task.getStatus());
         taskDB.setPriority(task.getPriority());
-        return taskDB;
+        return taskRepository.save(taskDB);
     }
 
     @Override
