@@ -65,9 +65,6 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-    /*
-     * @desc Custom methods for queries
-     */
     @GetMapping(value = "/findUserByName/{userFullName}")
     public ResponseEntity<List<User>> findUserByName(@PathVariable(value = "userFullName") String userName) {
         List<User> users = userService.findUserByName(userName);

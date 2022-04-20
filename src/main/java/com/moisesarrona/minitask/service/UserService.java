@@ -19,9 +19,6 @@ public interface UserService {
 
     public void deletedUser(Long id);
 
-    /*
-     * @desc Custom methods for queries
-     */
     public List<User> findUserByName(String userFullName);
 
     public User findUserByEmail(String userEmail);
