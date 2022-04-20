@@ -50,9 +50,6 @@ public class StatusServiceImpl implements StatusService {
         statusRepository.deleteById(id);
     }
 
-    /*
-     * @desc Custom methods for queries
-     */
     @Override
     public List<Status> findStatusByName(String statusName) {
         return statusRepository.findStatusByName(statusName);

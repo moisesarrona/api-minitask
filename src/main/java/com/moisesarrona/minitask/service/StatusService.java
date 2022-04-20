@@ -19,8 +19,5 @@ public interface StatusService {
 
     public void deletedStatus(Long id);
 
-    /*
-     * @desc Custom methods for queries
-     */
     public List<Status> findStatusByName(String statusName);
 }

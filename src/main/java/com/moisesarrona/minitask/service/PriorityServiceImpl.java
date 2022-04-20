@@ -50,9 +50,6 @@ public class PriorityServiceImpl implements PriorityService {
         priorityRepository.deleteById(id);
     }
 
-    /*
-     * @desc Custom methods for queries
-     */
     @Override
     public List<Priority> findPriorityByName(String priorityName) {
         return priorityRepository.findPriorityByName(priorityName);
