@@ -65,9 +65,6 @@ public class TaskController {
         return ResponseEntity.ok().build();
     }
 
-    /*
-     * @desc Custom methods for queries
-     */
     @GetMapping(value = "/findAllTaskActiveByUserId/{user_id}")
     public ResponseEntity<List<Task>> findAllTaskActiveByUserId(@PathVariable(value = "user_id") Long user_id) {
         List<Task> task = taskService.findAllTaskActiveByUserId(user_id);

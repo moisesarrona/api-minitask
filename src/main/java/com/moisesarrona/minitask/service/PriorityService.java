@@ -19,8 +19,5 @@ public interface PriorityService {
 
     public void deletedPriority(Long id);
 
-    /*
-     * @desc Custom methods for queries
-     */
     public List<Priority> findPriorityByName(String priorityName);
 }

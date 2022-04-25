@@ -19,9 +19,6 @@ public interface TaskService {
 
     public void deletedTask(Long id);
 
-    /*
-     * @desc Custom methods for queries
-     */
     public List<Task> findAllTaskActiveByUserId(Long user_id);
 
     public List<Task> findTaskByStatusId(Long status_id);

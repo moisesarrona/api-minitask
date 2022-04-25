@@ -19,8 +19,5 @@ public interface TagService {
 
     public void deletedTag(Long id);
 
-    /*
-     * @desc Custom methods for queries
-     */
     public List<Tag> findTagByName(String tagName);
 }

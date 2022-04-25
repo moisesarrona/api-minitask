@@ -50,9 +50,6 @@ public class TagServiceImpl implements TagService {
         tagRepository.deleteById(id);
     }
 
-    /*
-     * @desc Custom methods for queries
-     */
     @Override
     public List<Tag> findTagByName(String tagName) {
         return tagRepository.findTagByName(tagName);

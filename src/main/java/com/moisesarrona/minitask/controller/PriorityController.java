@@ -65,9 +65,6 @@ public class PriorityController {
         return ResponseEntity.ok().build();
     }
 
-    /*
-     * @desc Custom methods for queries
-     */
     @GetMapping(value = "/findPriorityByName/{priorityName}")
     public ResponseEntity<List<Priority>> findPriorityByName(@PathVariable(value = "priorityName") String priorityName) {
         List<Priority> priorities = priorityService.findPriorityByName(priorityName);

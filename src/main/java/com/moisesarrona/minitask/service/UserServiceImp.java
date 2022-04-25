@@ -52,9 +52,6 @@ public class UserServiceImp implements UserService {
         userRepository.deleteById(id);
     }
 
-    /*
-     * @desc Custom methods for queries
-     */
     @Override
     public List<User> findUserByName(String userFullName) {
         return userRepository.findUserByName(userFullName);

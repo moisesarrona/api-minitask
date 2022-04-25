@@ -65,9 +65,6 @@ public class StatusController {
         return ResponseEntity.ok().build();
     }
 
-    /*
-     * @desc Custom methods for queries
-     */
     @GetMapping(value = "/findStatusByName/{statusName}")
     public ResponseEntity<List<Status>> findStatusByName(@PathVariable(value = "statusName") String statusName) {
         List<Status> status = statusService.findStatusByName(statusName);
