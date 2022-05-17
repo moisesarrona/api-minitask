@@ -1,10 +1,10 @@
 package com.moisesarrona.minitask.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -21,7 +21,7 @@ import java.util.List;
 @Setter
 @Getter
 @NoArgsConstructor
-@ToString
+@AllArgsConstructor
 @Entity
 @Table(name = "tags")
 public class Tag {
@@ -48,6 +48,6 @@ public class Tag {
 
     @ManyToMany(mappedBy = "tags")
     @JsonBackReference
-    @ToString.Exclude
+    //@ToString.Exclude
     private List<Task> tasks;
 }

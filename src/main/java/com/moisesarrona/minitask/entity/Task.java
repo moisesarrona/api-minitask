@@ -1,9 +1,9 @@
 package com.moisesarrona.minitask.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -21,7 +21,7 @@ import java.util.List;
 @Setter
 @Getter
 @NoArgsConstructor
-@ToString
+@AllArgsConstructor
 @Entity
 @Table(name = "tasks")
 public class Task {
@@ -73,6 +73,6 @@ public class Task {
 
     @ManyToMany(cascade = {})
     //@JsonManagedReference
-    @ToString.Exclude
+    //@ToString.Exclude
     private List<Tag> tags;
 }
