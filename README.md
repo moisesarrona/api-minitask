@@ -1,8 +1,8 @@
 # api-task 📓
 This is an API created to organize your tasks, you prioritize task, change status add tags. Api status is primitive, I keep writing code.  
   
-Version 0.1.4     
-Description: Fix service updated Task.
+Version 0.1.6     
+Description: Refactor classes in project.
 
 ## Technologies 💻
 - Java 11
