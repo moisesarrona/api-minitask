@@ -5,6 +5,6 @@
  \__,_| .__/|_|         |_| |_| |_|_|_| |_|_|\__\__,_|___/_|\_\
       |_|
 
-Version 0.1.6
+Version: 0.1.6
 Author: @moisesarrona
 Description: Refactor classes in project.
