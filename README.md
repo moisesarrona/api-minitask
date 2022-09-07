@@ -1,15 +1,17 @@
 # api-task 📓
 This is an API created to organize your tasks, you prioritize task, change status add tags. Api status is primitive, I keep writing code.  
   
->Version: 0.1.7  
-Author: [@moisesarrona](https://github.com/mosesarrona)  
-Description: Refactor classes in project.
+>__v0.1.7__  
+__Author:__ [@moisesarrona](https://github.com/mosesarrona)  
+__Description:__ Refactor classes in project.
 
 ## Technologies 💻
-- Java 11
+- Java 18
 - JPA
 - Spring Boot 2.5.5
-  - Spring Boot Devtools
+  - Devtools
+  - Web
+  - Test
   - Validation
 
 ## Dependencies 🏗️
@@ -17,9 +19,9 @@ Description: Refactor classes in project.
 - MySQL connector
 
 ## Requirements 📋
-- Java 11
-- Apache
-- Mysql
+- Java 18
+- Apache 2.0
+- Mysql 7.4.12
 
 ## About me 👨‍💻
 Hi, my name is Moises Arrona I'm creator this api, follow me in for more projects
