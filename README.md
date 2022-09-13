@@ -1,9 +1,9 @@
 # api-task 📓
 This is an API created to organize your tasks, you prioritize task, change status add tags. Api status is primitive, I keep writing code.  
   
->__v0.1.7__  
+>__v0.1.8__  
 __Author:__ [@moisesarrona](https://github.com/mosesarrona)  
-__Description:__ Refactor classes in project.
+__Description:__ New schema and architecture in the project.
 
 ## Technologies 💻
 - Java 18
