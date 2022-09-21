@@ -2,7 +2,6 @@ package com.moisesarrona.minitask.repository;
 
 import com.moisesarrona.minitask.entity.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
@@ -10,19 +9,18 @@ import java.util.List;
 
 /**
  * @author moisesarrona
- * @version 0.1
+ * @version 0.0.2
  */
 @Repository
 public interface StatusRepository extends JpaRepository<Status, Long> {
+    static final String queryFindStatusById =
+            "SELECT *FROM status WHERE id = :id";
+
     static final String queryFindStatusByName =
-            "SELECT *FROM status WHERE name LIKE %:statusName%";
+            "SELECT *FROM status WHERE LIKE %:name%";
 
-    static final String querySearchByName =
-            "SELECT *FROM status WHERE name = :statusName";
 
-    @Query(value = queryFindStatusByName, nativeQuery = true)
-    public List<Status> findStatusByName(@Param("statusName") String statusName);
+    public Status findStatusById(@Param("id") Long id);
 
-    @Query(value = querySearchByName, nativeQuery = true)
-    public Status SearchByName(@Param("statusName") String statusName);
+    public List<Status> findStatusByName(@Param("name") String name);
 }
