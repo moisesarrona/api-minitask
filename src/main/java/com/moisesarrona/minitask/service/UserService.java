@@ -6,21 +6,18 @@ import java.util.List;
 
 /**
  * @author moisesarrona
- * @version 0.1
+ * @version 0.0.2
  */
 public interface UserService {
-    public List<User> getAllUser();
+    public User findUserById(Long id);
 
-    public User findUser(Long id);
+    public List<User> findUserByEmail(String email);
+
+    public List<User> findUserByUsernameOrName(String user);
 
     public User createdUser(User user);
 
     public User updatedUser(User user);
 
-    public void deletedUser(Long id);
-
-    public List<User> findUserByName(String userFullName);
-
-    public User findUserByEmail(String userEmail);
-
+    public User deletedUser(Long id);
 }
