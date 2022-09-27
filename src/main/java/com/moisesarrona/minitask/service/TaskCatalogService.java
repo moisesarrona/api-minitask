@@ -2,6 +2,7 @@ package com.moisesarrona.minitask.service;
 
 import com.moisesarrona.minitask.entity.Phase;
 import com.moisesarrona.minitask.entity.Priority;
+import com.moisesarrona.minitask.entity.Tag;
 
 import java.util.List;
 
@@ -19,7 +20,14 @@ public interface TaskCatalogService {
 
     public Phase findPhaseById(Long id);
 
-    public List<Phase> findPhasesByName(String Name);
+    public List<Phase> findPhasesByName(String name);
 
     public Phase createdPhase(Phase phase);
+
+
+    public Tag findTagById(Long id);
+
+    public List<Tag> findTagsByName(String name);
+
+    public Tag createdTag(Tag phase);
 }

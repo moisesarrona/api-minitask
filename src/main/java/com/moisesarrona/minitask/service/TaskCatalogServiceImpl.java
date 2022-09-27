@@ -2,8 +2,10 @@ package com.moisesarrona.minitask.service;
 
 import com.moisesarrona.minitask.entity.Phase;
 import com.moisesarrona.minitask.entity.Priority;
+import com.moisesarrona.minitask.entity.Tag;
 import com.moisesarrona.minitask.repository.PriorityRepository;
 import com.moisesarrona.minitask.repository.PhaseRepository;
+import com.moisesarrona.minitask.repository.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,9 @@ public class TaskCatalogServiceImpl implements TaskCatalogService {
 
     @Autowired
     private PhaseRepository phaseRepository;
+
+    @Autowired
+    private TagRepository tagRepository;
 
 
     @Override
@@ -40,6 +45,7 @@ public class TaskCatalogServiceImpl implements TaskCatalogService {
         return priorityDB;
     }
 
+
     @Override
     public Phase findPhaseById(Long id) {
         return phaseRepository.findPhaseById(id);
@@ -56,5 +62,24 @@ public class TaskCatalogServiceImpl implements TaskCatalogService {
         if (phaseDB == null)
             return phaseRepository.save(phase);
         return phaseDB;
+    }
+
+
+    @Override
+    public Tag findTagById(Long id) {
+        return tagRepository.findTagById(id);
+    }
+
+    @Override
+    public List<Tag> findTagsByName(String name) {
+        return tagRepository.findTagsByName(name);
+    }
+
+    @Override
+    public Tag createdTag(Tag tag) {
+        Tag tagDB = tagRepository.findTagByName(tag.getName());
+        if (tagDB == null)
+            return tagRepository.save(tag);
+        return tagDB;
     }
 }

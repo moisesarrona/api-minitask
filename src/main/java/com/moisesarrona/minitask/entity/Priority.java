@@ -39,9 +39,9 @@ public class Priority {
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    private Date created_at;
+    private Date createdAt;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updated_at;
+    private Date updatedAt;
 }

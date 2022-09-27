@@ -41,9 +41,9 @@ public class Phase {
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    private Date created_at;
+    private Date createdAt;
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updated_at;
+    private Date updatedAt;
 }
