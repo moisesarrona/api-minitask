@@ -9,15 +9,15 @@ import java.util.List;
  * @version 0.0.2
  */
 public interface UserService {
-    public User findUserById(Long id);
+    public User findUserById(Long userId);
 
-    public List<User> findUserByEmail(String email);
+    public List<User> findUsersByEmail(String email);
 
-    public List<User> findUserByUsernameOrName(String user);
+    public List<User> findUserByUsersByNameOrUsername(String user);
 
     public User createdUser(User user);
 
     public User updatedUser(User user);
 
-    public User deletedUser(Long id);
+    public User deletedUser(Long userId);
 }

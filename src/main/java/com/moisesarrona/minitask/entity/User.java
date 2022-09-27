@@ -14,9 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 /**
@@ -33,36 +31,39 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Name is required")
+    @NotBlank(message = "name is required")
     @Size(min = 2, max = 50, message = "Minimum 2 and Maximum 50 characters")
     @Column(length = 50, nullable = false, unique = true)
     private String name;
 
+    @NotBlank(message = "lastname is required")
     @Size(min = 2, max = 50, message = "Minimum 2 and Maximum 150 characters")
-    @Column(length = 150)
+    @Column(length = 150, nullable = false)
     private String lastname;
 
-    @NotBlank(message = "Username is required")
-    @Size(min = 2, max = 50, message = "Minimum 2 and Maximum 50 characters")
-    @Column(length = 50, nullable = false)
+    @NotBlank(message = "username is required")
+    @Size(min = 2, max = 20, message = "Minimum 2 and Maximum 20 characters")
+    @Column(length = 50, nullable = false, unique = true)
     private String username;
 
     private String description;
 
-    @Size(min = 2, max = 150, message = "Minimum 2 and Maximum 50 characters")
-    @Column(length = 150)
+    @Size(min = 2, max = 150, message = "Minimum 2 and Maximum 15 characters")
+    @Column(length = 15)
     private String phone;
 
-    @Email(message = "Email is invalid", regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\\\.[a-z]{2,3}")
-    @NotBlank(message = "Email is required")
+    @Email(message = "email is invalid",
+            regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")
+    @NotBlank(message = "email is required")
     @Size(min = 2, max = 50, message = "Minimum 2 and Maximum 150 characters")
     @Column(length = 150, nullable = false, unique = false)
     private String email;
 
-    @NotBlank(message = "Password is required")
+    @NotBlank(message = "password is required")
     @Column(nullable = false)
     private String password;
 
+    @NotNull(message = "status is required")
     @Column(nullable = false)
     private Boolean status;
 

@@ -15,21 +15,33 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     static final String queryFindUserById =
-            "SELECT *FROM users WHERE id = :id";
+            "SELECT *FROM users WHERE id = :userId";
 
     static final String queryFindUserByEmail =
+            "SELECT *FROM users WHERE email = :email";
+
+    static final String queryFindUserByUsername =
+            "SELECT *FROM users WHERE username = :username";
+
+    static final String queryFindUsersByEmail =
             "SELECT *FROM users WHERE email LIKE %:email%";
 
-    static final String queryFindUserByUsernameOrName =
+    static final String queryFindUserByUsersByNameOrUsername =
             "SELECT *FROM users WHERE CONCAT_WS(' ', name, lastname, username) LIKE %:user%";
 
 
     @Query(value = queryFindUserById, nativeQuery = true)
-    public User findUserById(@Param("id") Long id);
+    public User findUserById(@Param("userId") Long userId);
 
     @Query(value = queryFindUserByEmail, nativeQuery = true)
-    public List<User> findUserByEmail(@Param("email") String email);
+    public User findUserByEmail(@Param("email") String email);
 
-    @Query(value = queryFindUserByUsernameOrName, nativeQuery = true)
-    public List<User> findUserByUsernameOrName(@Param("user") String user);
+    @Query(value = queryFindUserByUsername, nativeQuery = true)
+    public User findUserByUsername(@Param("username") String username);
+
+    @Query(value = queryFindUsersByEmail, nativeQuery = true)
+    public List<User> findUsersByEmail(@Param("email") String email);
+
+    @Query(value = queryFindUserByUsersByNameOrUsername, nativeQuery = true)
+    public List<User> findUserByUsersByNameOrUsername(@Param("user") String user);
 }

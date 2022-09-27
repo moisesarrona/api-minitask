@@ -20,25 +20,25 @@ public class UserController {
     private UserService userService;
 
 
-    @RequestMapping(value = "/findUserById/{id}")
-    public ResponseEntity<User> findUserById(@PathVariable("id") Long id){
-        User userDB = userService.findUserById(id);
+    @RequestMapping(value = "/findUserById/{userId}")
+    public ResponseEntity<User> findUserById(@PathVariable("userId") Long userId){
+        User userDB = userService.findUserById(userId);
         if (userDB == null)
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(userDB);
     }
 
     @RequestMapping(value = "/findUserByEmail/{email}")
-    public ResponseEntity<User> findUserByEmail(@PathVariable("email") String email){
-        User userDB = userService.findUserByEmail(email).get(0);
+    public ResponseEntity<List<User>> findUsersByEmail(@PathVariable("email") String email){
+        List<User> userDB = userService.findUsersByEmail(email);
         if (userDB == null)
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(userDB);
     }
 
-    @RequestMapping(value = "/findUserByUsernameOrName/{user}")
-    public ResponseEntity<List<User>> findUserByUsernameOrName(@PathVariable("user") String user) {
-        List<User> usersDB = userService.findUserByUsernameOrName(user);
+    @RequestMapping(value = "/findUserByUsersByNameOrUsername/{user}")
+    public ResponseEntity<List<User>> findUserByUsersByNameOrUsername(@PathVariable("user") String user) {
+        List<User> usersDB = userService.findUserByUsersByNameOrUsername(user);
         if (usersDB.isEmpty())
             return ResponseEntity.noContent().build();
         return ResponseEntity.status(HttpStatus.CREATED).body(usersDB);
@@ -46,7 +46,6 @@ public class UserController {
 
     @PostMapping(value = "/createdUser")
     public ResponseEntity<User> createdUser(@RequestBody User user) {
-        user.setStatus(true);
         User userDB = userService.createdUser(user);
         return ResponseEntity.ok(userDB);
     }
@@ -59,9 +58,9 @@ public class UserController {
         return ResponseEntity.ok(userDB);
     }
 
-    @PutMapping(value = "/deletedUser/{id}")
-    public ResponseEntity<User> deletedUser(@PathVariable("id") Long id){
-        User userDB = userService.deletedUser(id);
+    @PutMapping(value = "/deletedUser/{userId}")
+    public ResponseEntity<User> deletedUser(@PathVariable("userId") Long userId){
+        User userDB = userService.deletedUser(userId);
         if (userDB == null)
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(userDB);
