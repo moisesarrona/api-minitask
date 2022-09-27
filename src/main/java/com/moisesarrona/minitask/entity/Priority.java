@@ -27,7 +27,6 @@ import java.util.Date;
 @Entity
 @Table(name = "priorities")
 public class Priority {
-    @Column(length = 50, nullable = false, unique = true)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

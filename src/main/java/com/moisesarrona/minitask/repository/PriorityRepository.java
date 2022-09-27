@@ -17,10 +17,15 @@ public interface PriorityRepository extends JpaRepository<Priority, Long> {
             "SELECT *FROM priorities WHERE id = :id";
 
     static final String queryFindPriorityByName =
-            "SELECT *FROM priorities WHERE LIKE %:name%";
+            "SELECT *FROM priorities WHERE name = :name";
+
+    static final String queryFindPrioritiesByName =
+            "SELECT *FROM priorities WHERE name LIKE %:name%";
 
 
     public Priority findPriorityById(@Param("id") Long id);
 
-    public List<Priority> findPriorityByName(@Param("name") String name);
+    public Priority findPriorityByName(@Param("name") String name);
+
+    public List<Priority> findPrioritiesByName(@Param("name") String name);
 }

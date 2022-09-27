@@ -26,13 +26,13 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "status")
-public class Status {
+@Table(name = "phases")
+public class Phase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Name is required")
+    @NotBlank(message = "name is required")
     @Size(min = 3, max = 50, message = "Minimum 2 and Maximum 50 characters")
     @Column(length = 50, nullable = false, unique = true)
     private String name;

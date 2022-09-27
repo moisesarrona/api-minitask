@@ -1,8 +1,7 @@
 package com.moisesarrona.minitask.service;
 
+import com.moisesarrona.minitask.entity.Phase;
 import com.moisesarrona.minitask.entity.Priority;
-import com.moisesarrona.minitask.entity.Status;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -13,14 +12,14 @@ import java.util.List;
 public interface TaskCatalogService {
     public Priority findPriorityById(Long id);
 
-    public List<Priority> findPriorityByName(String name);
+    public List<Priority> findPrioritiesByName(String name);
 
     public Priority createdPriority(Priority priority);
 
 
-    public Status findStatusById(Long id);
+    public Phase findPhaseById(Long id);
 
-    public List<Status> findStatusByName(String Name);
+    public List<Phase> findPhasesByName(String Name);
 
-    public Status createdStatus(Status status);
+    public Phase createdPhase(Phase phase);
 }

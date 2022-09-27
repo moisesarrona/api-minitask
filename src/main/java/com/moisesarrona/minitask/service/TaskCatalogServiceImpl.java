@@ -1,9 +1,9 @@
 package com.moisesarrona.minitask.service;
 
+import com.moisesarrona.minitask.entity.Phase;
 import com.moisesarrona.minitask.entity.Priority;
-import com.moisesarrona.minitask.entity.Status;
 import com.moisesarrona.minitask.repository.PriorityRepository;
-import com.moisesarrona.minitask.repository.StatusRepository;
+import com.moisesarrona.minitask.repository.PhaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,7 @@ public class TaskCatalogServiceImpl implements TaskCatalogService {
     private PriorityRepository priorityRepository;
 
     @Autowired
-    private StatusRepository statusRepository;
+    private PhaseRepository phaseRepository;
 
 
     @Override
@@ -28,33 +28,33 @@ public class TaskCatalogServiceImpl implements TaskCatalogService {
     }
 
     @Override
-    public List<Priority> findPriorityByName(String name) {
-        return priorityRepository.findPriorityByName(name);
+    public List<Priority> findPrioritiesByName(String name) {
+        return priorityRepository.findPrioritiesByName(name);
     }
 
     @Override
     public Priority createdPriority(Priority priority) {
-        List<Priority> priorityDB = findPriorityByName(priority.getName());
-        if (priorityDB.isEmpty())
+        Priority priorityDB = priorityRepository.findPriorityByName(priority.getName());
+        if (priorityDB == null)
             return priorityRepository.save(priority);
-        return priorityDB.get(0);
+        return priorityDB;
     }
 
     @Override
-    public Status findStatusById(Long id) {
-        return statusRepository.findStatusById(id);
+    public Phase findPhaseById(Long id) {
+        return phaseRepository.findPhaseById(id);
     }
 
     @Override
-    public List<Status> findStatusByName(String name) {
-        return statusRepository.findStatusByName(name);
+    public List<Phase> findPhasesByName(String name) {
+        return phaseRepository.findPhasesByName(name);
     }
 
     @Override
-    public Status createdStatus(Status status) {
-        List<Status> statusDB = findStatusByName(status.getName());
-        if (statusDB.isEmpty())
-            return statusRepository.save(status);
-        return statusDB.get(0);
+    public Phase createdPhase(Phase phase) {
+        Phase phaseDB = phaseRepository.findPhaseByName(phase.getName());
+        if (phaseDB == null)
+            return phaseRepository.save(phase);
+        return phaseDB;
     }
 }

@@ -1,7 +1,7 @@
 package com.moisesarrona.minitask.controller;
 
+import com.moisesarrona.minitask.entity.Phase;
 import com.moisesarrona.minitask.entity.Priority;
-import com.moisesarrona.minitask.entity.Status;
 import com.moisesarrona.minitask.service.TaskCatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +31,7 @@ public class TaskCatalogController {
 
     @RequestMapping(value = "/findPriorityByName/{name}")
     public ResponseEntity<List<Priority>> findPriorityByName(@PathVariable("name") String name) {
-        List<Priority> prioritiesDB = taskCatalogService.findPriorityByName(name);
+        List<Priority> prioritiesDB = taskCatalogService.findPrioritiesByName(name);
         if (prioritiesDB.isEmpty())
             return ResponseEntity.noContent().build();
         return ResponseEntity.ok(prioritiesDB);
@@ -44,25 +44,25 @@ public class TaskCatalogController {
     }
 
 
-    @RequestMapping(value = "/findStatusById/{id}")
-    public ResponseEntity<Status> findStatusById(Long id) {
-        Status statusDB = taskCatalogService.findStatusById(id);
-        if (statusDB == null)
+    @RequestMapping(value = "/findPhaseById/{id}")
+    public ResponseEntity<Phase> findPhaseById(@PathVariable("id") Long id) {
+        Phase phaseDB = taskCatalogService.findPhaseById(id);
+        if (phaseDB == null)
             return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(statusDB);
+        return ResponseEntity.ok(phaseDB);
     }
 
-    @RequestMapping(value = "/findStatusByName/{name}")
-    public ResponseEntity<List<Status>> findStatusByName(String name) {
-        List<Status> statusDB = taskCatalogService.findStatusByName(name);
-        if (statusDB.isEmpty())
+    @RequestMapping(value = "/findPhaseByName/{name}")
+    public ResponseEntity<List<Phase>> findPhaseByName(@PathVariable("name") String name) {
+        List<Phase> phaseDB = taskCatalogService.findPhasesByName(name);
+        if (phaseDB.isEmpty())
             return ResponseEntity.noContent().build();
-        return ResponseEntity.ok(statusDB);
+        return ResponseEntity.ok(phaseDB);
     }
 
-    @PostMapping(value = "/createdStatus")
-    public ResponseEntity<Status> createdStatus(@Valid @RequestBody Status status) {
-        Status statusDB = taskCatalogService.createdStatus(status);
-        return ResponseEntity.ok(statusDB);
+    @PostMapping(value = "/createdPhase")
+    public ResponseEntity<Phase> createdPhase(@Valid @RequestBody Phase phase) {
+        Phase phaseDB = taskCatalogService.createdPhase(phase);
+        return ResponseEntity.ok(phaseDB);
     }
 }
