@@ -1,14 +1,24 @@
 package com.moisesarrona.minitask.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -16,12 +26,11 @@ import java.util.List;
 
 /**
  * @author moisesarrona
- * @version 0.1
+ * @version 0.0.2
  */
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "tasks")
 public class Task {
@@ -29,40 +38,47 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "Enter name")
-    @Size(min = 3, max= 50, message = "Minimum 3 wor Maximum 50")
-    @Column(length = 50, nullable = false)
+    @NotBlank(message = "name is required")
+    @Size(min = 3, max = 50, message = "Minimum 2 and Maximum 50 characters")
+    @Column(length = 50, nullable = false, unique = true)
     private String name;
 
-    @Size(max = 255, message = "Maximum 255")
-    @Column(length = 255)
     private String description;
 
-    @NotNull(message = "Mode is required")
-    @Column(nullable = false, columnDefinition = "BIT")
-    private Boolean mode;
+    private String observation;
 
-    @CreationTimestamp
+    @NotNull(message = "dateStart is required")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date created_at;
+    @Column(name = "date_start", nullable = false)
+    private Date dateStart;
 
-    @UpdateTimestamp
+    @NotNull(message = "dateEnd is required")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updated_at;
+    @Column(name = "date_end", nullable = false)
+    private Date dateEnd;
 
-    @ManyToOne(cascade = {})
-    @JoinColumn(name = "status_id")
-    //@ToString.Exclude
-    private Status status;
+    @NotNull(message = "repetitive is required")
+    @Column(nullable = false)
+    private Boolean repetitive;
 
-    @ManyToOne(cascade = {})
+    @NotNull(message = "completed is required")
+    @Column(nullable = false)
+    private Boolean completed;
+
+    @NotNull(message = "status is required")
+    @Column(nullable = false)
+    private Boolean status;
+
+    @ManyToOne
     @JoinColumn(name = "priority_id")
-    //@ToString.Exclude
     private Priority priority;
 
-    @ManyToOne(cascade = {})
+    @ManyToOne
+    @JoinColumn(name = "phase_id")
+    private Phase phase;
+
+    @ManyToOne
     @JoinColumn(name = "user_id")
-    //@ToString.Exclude
     private User user;
 
     @JoinTable(
@@ -70,9 +86,16 @@ public class Task {
             joinColumns = @JoinColumn(name = "task_id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "tag_id", nullable = false)
     )
-
-    @ManyToMany(cascade = {})
-    //@JsonManagedReference
-    //@ToString.Exclude
+    @ManyToMany
     private List<Tag> tags;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at")
+    private Date updatedAt;
 }

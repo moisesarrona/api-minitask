@@ -3,6 +3,7 @@ package com.moisesarrona.minitask.controller;
 import com.moisesarrona.minitask.entity.Task;
 import com.moisesarrona.minitask.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,26 +20,26 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
-    @RequestMapping(value = "/findAllTaskByDate/{idUser}/{dateStart}/{dateEnd}")
-    public ResponseEntity<List<Task>> findAllTaskByDate(@PathVariable("idUser") Long idUser, @PathVariable("dateStart") Date dateStart,
-                                                        @PathVariable("dateEnd")Date dateEnd) {
-        List<Task> tasksDB = taskService.findAllTaskByDate(idUser, dateStart, dateEnd);
+    @RequestMapping(value = "/findAllTasksByDate/{userId}/{dateStart}/{dateEnd}")
+    public ResponseEntity<List<Task>> findAllTaskByDate(@PathVariable("userId") Long userId, @PathVariable("dateStart") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date dateStart,
+                                                        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @PathVariable("dateEnd")Date dateEnd) {
+        List<Task> tasksDB = taskService.findAllTasksByDate(userId, dateStart, dateEnd);
         if (tasksDB.isEmpty())
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(tasksDB);
     }
 
-    @RequestMapping(value = "/findAllTaskByPriority/{idUser}/{priorityId}")
-    public ResponseEntity<List<Task>> findAllTaskByPriority(@PathVariable("idUser") Long idUser, @PathVariable("priorityId") Long priorityId) {
-        List<Task> tasksDB = taskService.findAllTaskByPriority(idUser, priorityId);
+    @RequestMapping(value = "/findAllTaskByPriority/{userId}/{priorityId}")
+    public ResponseEntity<List<Task>> findAllTasksByPriority(@PathVariable("userId") Long idUser, @PathVariable("priorityId") Long priorityId) {
+        List<Task> tasksDB = taskService.findAllTasksByPriority(idUser, priorityId);
         if (tasksDB.isEmpty())
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(tasksDB);
     }
 
     @RequestMapping(value = "/findAllTaskByPhase/{idUser}/{statusId}")
-    public ResponseEntity<List<Task>> findAllTaskByPhase(@PathVariable("idUser") Long idUser, @PathVariable("statusId") Long statusId) {
-        List<Task> tasksDB = taskService.findAllTaskByPhase(idUser, statusId);
+    public ResponseEntity<List<Task>> findAllTasksByPhase(@PathVariable("idUser") Long idUser, @PathVariable("statusId") Long statusId) {
+        List<Task> tasksDB = taskService.findAllTasksByPhase(idUser, statusId);
         if (tasksDB.isEmpty())
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(tasksDB);
@@ -59,12 +60,11 @@ public class TaskController {
         return ResponseEntity.ok(taskDB);
     }
 
-    @PutMapping(value = "/deletedTask/{idTask}")
+    @PutMapping(value = "/deletedTask/{taskId}")
     public ResponseEntity<Task> deletedTask(@PathVariable("idTask") Long idTask) {
         Task taskDB = taskService.deletedTask(idTask);
         if (taskDB == null)
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(taskDB);
     }
-
 }
