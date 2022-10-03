@@ -1,5 +1,6 @@
 package com.moisesarrona.minitask.service;
 
+import com.moisesarrona.minitask.entity.Priority;
 import com.moisesarrona.minitask.entity.User;
 import com.moisesarrona.minitask.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,57 +10,61 @@ import java.util.List;
 
 /**
  * @author moisesarrona
- * @version 0.1
+ * @version 0.0.2
  */
 @Service
 public class UserServiceImp implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+
     @Override
-    public List<User> getAllUser() {
-        return userRepository.findAll();
+    public User findUserById(Long userId) {
+        return userRepository.findUserById(userId);
     }
 
     @Override
-    public User findUser(Long id) {
-        return userRepository.findById(id).orElse(null);
+    public List<User> findUsersByEmail(String email) {
+        return userRepository.findUsersByEmail(email);
+    }
+
+    @Override
+    public List<User> findUserByUsersByNameOrUsername(String user) {
+        return userRepository.findUserByUsersByNameOrUsername(user);
     }
 
     @Override
     public User createdUser(User user) {
-        User userDB = userRepository.searchUserByUserName(user.getUsername());
-        if (userDB == null)
-            return userRepository.save(user);
-        return userDB;
+        User userDB = userRepository.findUserByUsername(user.getUsername());
+        if (userDB != null)
+            return userDB;
+        userDB = userRepository.findUserByEmail(user.getEmail());
+        if (userDB != null)
+            return userDB;
+        user.setStatus(true);
+        return userRepository.save(user);
     }
 
     @Override
     public User updatedUser(User user) {
-        User userDB = findUser(user.getId());
+        User userDB = findUserById(user.getId());
         if (userDB == null)
             return null;
         userDB.setName(user.getName());
         userDB.setLastname(user.getLastname());
-        userDB.setEmail(user.getEmail());
-        userDB.setPhone(user.getPhone());
+        userDB.setUsername(user.getUsername());
         userDB.setDescription(user.getDescription());
+        userDB.setPhone(user.getPhone());
+        userDB.setEmail(user.getEmail());
         return userRepository.save(userDB);
     }
 
     @Override
-    public void deletedUser(Long id) {
-        userRepository.deleteById(id);
+    public User deletedUser(Long userId) {
+        User userDB = findUserById(userId);
+        if (userDB == null)
+            return null;
+        userDB.setStatus(!userDB.getStatus());
+        return userRepository.save(userDB);
     }
-
-    @Override
-    public List<User> findUserByName(String userFullName) {
-        return userRepository.findUserByName(userFullName);
-    }
-
-    @Override
-    public User findUserByEmail(String userEmail) {
-        return userRepository.findUserByEmail(userEmail);
-    }
-
 }

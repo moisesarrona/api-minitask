@@ -1,27 +1,28 @@
 package com.moisesarrona.minitask.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author moisesarrona
- * @version 0.1
+ * @version 0.0.2
  */
-@Setter
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
+@Setter
 @Entity
 @Table(name = "tags")
 public class Tag {
@@ -29,25 +30,18 @@ public class Tag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "Enter name")
-    @Size(min = 3, max= 50, message = "Minimum 3 wor Maximum 50")
+    @NotBlank(message = "name is required")
+    @Size(min = 3, max = 50, message = "Minimum 2 and Maximum 50 characters")
     @Column(length = 50, nullable = false, unique = true)
     private String name;
 
-    @Size(max = 255, message = "Maximum 255")
-    @Column(length = 255)
     private String description;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    private Date created_at;
+    private Date createdAt;
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updated_at;
-
-    @ManyToMany(mappedBy = "tags")
-    @JsonBackReference
-    //@ToString.Exclude
-    private List<Task> tasks;
+    private Date updatedAt;
 }
