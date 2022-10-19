@@ -41,6 +41,10 @@ public class User {
     @Column(length = 150, nullable = false)
     private String lastname;
 
+    @NotNull(message = "birthday is required")
+    @Column(nullable = false)
+    private Date birthday;
+
     @NotBlank(message = "username is required")
     @Size(min = 2, max = 20, message = "Minimum 2 and Maximum 20 characters")
     @Column(length = 50, nullable = false, unique = true)

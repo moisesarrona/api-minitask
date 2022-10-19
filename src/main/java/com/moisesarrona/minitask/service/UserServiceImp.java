@@ -52,6 +52,7 @@ public class UserServiceImp implements UserService {
             return null;
         userDB.setName(user.getName());
         userDB.setLastname(user.getLastname());
+        userDB.setBirthday(user.getBirthday());
         userDB.setUsername(user.getUsername());
         userDB.setDescription(user.getDescription());
         userDB.setPhone(user.getPhone());
