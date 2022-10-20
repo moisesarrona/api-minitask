@@ -26,7 +26,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     static final String queryFindUsersByEmail =
             "SELECT *FROM users WHERE email LIKE %:email%";
 
-    static final String queryFindUserByUsersByNameOrUsername =
+    static final String queryFindUsersByNameOrUsername =
             "SELECT *FROM users WHERE CONCAT_WS(' ', name, lastname, username) LIKE %:user%";
 
 
@@ -42,6 +42,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = queryFindUsersByEmail, nativeQuery = true)
     public List<User> findUsersByEmail(@Param("email") String email);
 
-    @Query(value = queryFindUserByUsersByNameOrUsername, nativeQuery = true)
-    public List<User> findUserByUsersByNameOrUsername(@Param("user") String user);
+    @Query(value = queryFindUsersByNameOrUsername, nativeQuery = true)
+    public List<User> findUsersByNameOrUsername(@Param("user") String user);
 }

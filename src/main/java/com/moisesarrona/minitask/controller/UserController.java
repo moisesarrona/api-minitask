@@ -38,8 +38,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/findUserByUsersByNameOrUsername/{user}")
-    public ResponseEntity<List<User>> findUserByUsersByNameOrUsername(@PathVariable("user") String user) {
-        List<User> usersDB = userService.findUserByUsersByNameOrUsername(user);
+    public ResponseEntity<List<User>> findUsersByNameOrUsername(@PathVariable("user") String user) {
+        List<User> usersDB = userService.findUsersByNameOrUsername(user);
         if (usersDB.isEmpty())
             return ResponseEntity.noContent().build();
         return ResponseEntity.status(HttpStatus.CREATED).body(usersDB);
