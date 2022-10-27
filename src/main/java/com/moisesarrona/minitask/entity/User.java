@@ -14,7 +14,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
@@ -67,8 +70,8 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @NotNull(message = "status is required")
-    @Column(nullable = false)
+    /*@NotNull(message = "status is required")
+    @Column(nullable = false)*/
     private Boolean status;
 
     @CreationTimestamp
