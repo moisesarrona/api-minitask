@@ -22,7 +22,7 @@ import java.util.List;
  */
 @RequestMapping(value = "/api/users")
 @RestController
-@CrossOrigin
+@CrossOrigin(value = "http://localhost:4200")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -31,6 +31,14 @@ public class UserController {
     @RequestMapping(value = "/findUserById/{userId}")
     public ResponseEntity<User> findUserById(@PathVariable("userId") Long userId){
         User userDB = userService.findUserById(userId);
+        if (userDB == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(userDB);
+    }
+
+    @RequestMapping(value = "findUserByEmailAndPassword/{email}/{password}")
+    public ResponseEntity<User> findUserByEmailAndPassword(@PathVariable("email") String email, @PathVariable("password") String password) {
+        User userDB = userService.findUserByEmailAndPassword(email, password);
         if (userDB == null)
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(userDB);

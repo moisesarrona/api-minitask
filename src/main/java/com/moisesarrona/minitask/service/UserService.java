@@ -11,6 +11,8 @@ import java.util.List;
 public interface UserService {
     public User findUserById(Long userId);
 
+    public User findUserByEmailAndPassword(String email, String password);
+
     public List<User> findUsersByEmail(String email);
 
     public List<User> findUsersByNameOrUsername(String user);
