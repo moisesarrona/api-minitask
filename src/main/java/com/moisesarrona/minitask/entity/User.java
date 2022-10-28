@@ -46,6 +46,7 @@ public class User {
 
     @NotNull(message = "birthday is required")
     @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date birthday;
 
     @NotBlank(message = "username is required")
@@ -55,18 +56,19 @@ public class User {
 
     private String description;
 
-    @Size(min = 2, max = 150, message = "Minimum 2 and Maximum 15 characters")
+    @Size(min = 2, max = 15, message = "Minimum 2 and Maximum 15 characters")
     @Column(length = 15)
     private String phone;
 
     @Email(message = "email is invalid",
             regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")
     @NotBlank(message = "email is required")
-    @Size(min = 2, max = 50, message = "Minimum 2 and Maximum 150 characters")
+    @Size(min = 2, max = 150, message = "Minimum 2 and Maximum 150 characters")
     @Column(length = 150, nullable = false, unique = false)
     private String email;
 
     @NotBlank(message = "password is required")
+    @Size(min = 5, max = 255, message = "Minimum 2 and Maximum 250 characters")
     @Column(nullable = false)
     private String password;
 
