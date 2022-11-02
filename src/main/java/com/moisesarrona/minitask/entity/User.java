@@ -64,7 +64,7 @@ public class User {
             regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")
     @NotBlank(message = "email is required")
     @Size(min = 2, max = 150, message = "Minimum 2 and Maximum 150 characters")
-    @Column(length = 150, nullable = false, unique = false)
+    @Column(length = 150, nullable = false, unique = true)
     private String email;
 
     @NotBlank(message = "password is required")
