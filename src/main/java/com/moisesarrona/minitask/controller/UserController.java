@@ -36,9 +36,9 @@ public class UserController {
         return ResponseEntity.ok(userDB);
     }
 
-    @RequestMapping(value = "findUserByEmailAndPassword/{email}/{password}")
-    public ResponseEntity<User> findUserByEmailAndPassword(@PathVariable("email") String email, @PathVariable("password") String password) {
-        User userDB = userService.findUserByEmailAndPassword(email, password);
+    @PostMapping(value = "findUserByEmailAndPassword")
+    public ResponseEntity<User> findUserByEmailAndPassword(@RequestBody User user) {
+        User userDB = userService.findUserByEmailAndPassword(user.getEmail(), user.getPassword());
         if (userDB == null)
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(userDB);
