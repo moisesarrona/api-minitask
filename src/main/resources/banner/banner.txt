@@ -5,6 +5,6 @@
  \__,_| .__/|_|         |_| |_| |_|_|_| |_|_|\__\__,_|___/_|\_\
       |_|
 
-v0.1.9
+v0.1.10
 Author: @moisesarrona
-Description: Refactor service and controller classes for CRUD
+Description: Create services to register and search users to access app-minitask
