@@ -1,9 +1,9 @@
 # api-task 📓
 This is an API created to organize your tasks, you prioritize task, change status add tags. Api status is primitive, I keep writing code.  
   
->__v0.1.9__  
+>__v0.1.10__  
 __Author:__ [@moisesarrona](https://github.com/mosesarrona)  
-__Description:__ Refactor service and controller classes for CRUD.
+__Description:__ Create services to register and search users to access app-minitask
 
 ## Technologies 💻
 - Java 18
