@@ -14,6 +14,10 @@ __Description:__ Create services to register and search users to access app-mini
   - Test
   - Validation
 
+## Setup
+- Open in IDE (IntelliJ)
+  - Click in run
+
 ## Dependencies 🏗️
 - Lombok
 - MySQL connector
