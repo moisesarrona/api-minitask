@@ -4,14 +4,9 @@ import com.moisesarrona.minitask.entity.User;
 import com.moisesarrona.minitask.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -27,7 +22,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
     @RequestMapping(value = "/findUserById/{userId}")
     public ResponseEntity<User> findUserById(@PathVariable("userId") Long userId){
         User userDB = userService.findUserById(userId);
@@ -36,17 +30,25 @@ public class UserController {
         return ResponseEntity.ok(userDB);
     }
 
-    @PostMapping(value = "findUserByEmailAndPassword")
-    public ResponseEntity<User> findUserByEmailAndPassword(@RequestBody User user) {
-        User userDB = userService.findUserByEmailAndPassword(user.getEmail(), user.getPassword());
+    @RequestMapping(value = "/findUserByEmail/{email}")
+    public ResponseEntity<List<User>> findUsersByEmail(@PathVariable("email") String email){
+        List<User> userDB = userService.findUsersByEmail(email);
         if (userDB == null)
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(userDB);
     }
 
-    @RequestMapping(value = "/findUserByEmail/{email}")
-    public ResponseEntity<List<User>> findUsersByEmail(@PathVariable("email") String email){
-        List<User> userDB = userService.findUsersByEmail(email);
+    @RequestMapping(value = "/findUserByUsername/{username}")
+    public ResponseEntity<User> findUserByUsername(@PathVariable("username") String username) {
+        User userDB = userService.findUserByUsername(username);
+        if (userDB == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(userDB);
+    }
+
+    @PostMapping(value = "findUserByEmailAndPassword")
+    public ResponseEntity<User> findUserByEmailAndPassword(@RequestBody User user) {
+        User userDB = userService.findUserByEmailAndPassword(user.getEmail(), user.getPassword());
         if (userDB == null)
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(userDB);
