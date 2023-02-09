@@ -23,5 +23,5 @@ public interface UserService {
 
     public User updatedUser(User user);
 
-    public User deletedUser(Long userId);
+    public User changeStatusUser(Long userId);
 }

@@ -4,7 +4,6 @@ import com.moisesarrona.minitask.entity.User;
 import com.moisesarrona.minitask.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -76,9 +75,9 @@ public class UserController {
         return ResponseEntity.ok(userDB);
     }
 
-    @PutMapping(value = "/deletedUser/{userId}")
-    public ResponseEntity<User> deletedUser(@PathVariable("userId") Long userId){
-        User userDB = userService.deletedUser(userId);
+    @PutMapping(value = "/changeStatusUser/{userId}")
+    public ResponseEntity<User> changeStatusUser(@PathVariable("userId") Long userId){
+        User userDB = userService.changeStatusUser(userId);
         if (userDB == null)
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(userDB);
