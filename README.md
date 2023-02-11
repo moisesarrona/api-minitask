@@ -1,14 +1,14 @@
 # api-task 📓
 This is an API created to organize your tasks, you prioritize task, change status add tags. Api status is primitive, I keep writing code.  
   
->__v0.1.10__  
+>__v0.2.0__  
 __Author:__ [@moisesarrona](https://github.com/mosesarrona)  
-__Description:__ Create services to register and search users to access app-minitask
+__Description:__ Migrate SpringBoot version from 2 to 3
 
 ## Technologies 💻
-- Java 18
+- Java 17
 - JPA
-- Spring Boot 2.5.5
+- Spring Boot 3.0.2
   - Devtools
   - Web
   - Test
@@ -19,7 +19,7 @@ __Description:__ Create services to register and search users to access app-mini
 - MySQL connector
 
 ## Requirements 📋
-- Java 18
+- Java 17
 - Apache 2.0
 - Mysql 7.4.12
 
