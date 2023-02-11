@@ -54,11 +54,18 @@ public class User {
     @Column(length = 50, nullable = false, unique = true)
     private String username;
 
+    @Size(min = 2, max = 255, message = "Minimum 2 and Maximum 255 characters")
+    private String image;
+
     private String description;
 
     @Size(min = 2, max = 15, message = "Minimum 2 and Maximum 15 characters")
     @Column(length = 15)
     private String phone;
+
+    @Size(min = 2, max = 50, message = "Minimum 2 and Maximum 50 characters")
+    @Column(length = 50)
+    private String link;
 
     @Email(message = "email is invalid",
             regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")
