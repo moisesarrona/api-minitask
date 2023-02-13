@@ -5,6 +5,6 @@
  \__,_| .__/|_|         |_| |_| |_|_|_| |_|_|\__\__,_|___/_|\_\
       |_|
 
-v0.1.10
+vv0.2.0
 Author: @moisesarrona
-Description: Create services to register and search users to access app-minitask
+Description: Migrate SpringBoot version from 2 to 3
