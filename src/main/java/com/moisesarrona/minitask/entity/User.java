@@ -79,8 +79,8 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    /*@NotNull(message = "status is required")
-    @Column(nullable = false)*/
+    /*@NotNull(message = "status is required")*/
+    @Column(nullable = false)
     private Boolean status;
 
     @CreationTimestamp
