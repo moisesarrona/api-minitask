@@ -1,9 +1,9 @@
 # api-task 📓
 This is an API created to organize your tasks, you prioritize task, change status add tags. Api status is primitive, I keep writing code.  
   
->__v0.2.0__  
+>__v0.2.1__  
 __Author:__ [@moisesarrona](https://github.com/mosesarrona)  
-__Description:__ Migrate SpringBoot version from 2 to 3
+__Description:__ Add new fields to User
 
 ## Technologies 💻
 - Java 17
