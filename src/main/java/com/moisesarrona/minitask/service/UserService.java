@@ -13,6 +13,8 @@ public interface UserService {
 
     public User findUserByEmailAndPassword(String email, String password);
 
+    public User findUserByUsername(String username);
+
     public List<User> findUsersByEmail(String email);
 
     public List<User> findUsersByNameOrUsername(String user);
@@ -21,5 +23,5 @@ public interface UserService {
 
     public User updatedUser(User user);
 
-    public User deletedUser(Long userId);
+    public User changeStatusUser(Long userId);
 }

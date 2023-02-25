@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.moisesarrona.minitask</groupId>
 	<artifactId>api-minitask</artifactId>
-	<version>0.2.0</version>
+	<version>0.2.1</version>
 	<packaging>war</packaging>
 	<name>api-minitask</name>
 	<description>This is an API created to organize your tasks, you prioritize task, change status add tags. Api status is primitive, I keep writing code.</description>
@@ -81,6 +81,7 @@
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 						</exclude>
+
 					</excludes>
 				</configuration>
 			</plugin>

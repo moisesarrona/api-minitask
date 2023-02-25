@@ -18,10 +18,14 @@ public class UserServiceImp implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-
     @Override
     public User findUserById(Long userId) {
         return userRepository.findUserById(userId);
+    }
+
+    @Override
+    public User findUserByUsername(String username) {
+        return userRepository.findUserByUsername(username);
     }
 
     @Override
@@ -53,22 +57,24 @@ public class UserServiceImp implements UserService {
 
     @Override
     public User updatedUser(User user) {
-        User userDB = findUserById(user.getId());
+        User userDB = userRepository.findUserById(user.getId());
         if (userDB == null)
             return null;
         userDB.setName(user.getName());
         userDB.setLastname(user.getLastname());
         userDB.setBirthday(user.getBirthday());
         userDB.setUsername(user.getUsername());
+        userDB.setImage(user.getImage());
         userDB.setDescription(user.getDescription());
         userDB.setPhone(user.getPhone());
+        userDB.setLink(user.getLink());
         userDB.setEmail(user.getEmail());
         return userRepository.save(userDB);
     }
 
     @Override
-    public User deletedUser(Long userId) {
-        User userDB = findUserById(userId);
+    public User changeStatusUser(Long userId) {
+        User userDB = userRepository.findUserById(userId);
         if (userDB == null)
             return null;
         userDB.setStatus(!userDB.getStatus());
